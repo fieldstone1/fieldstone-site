@@ -9,9 +9,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --forest:#1C4220;--forest-dark:#12301B;--dawn:#CACCCB;
-  --stone:#EFEDE6;--stone-deep:#E3E0D6;--ink:#1E1D1A;
-  --ink-soft:#55534C;--brass:#9C7A3C;--paper:#FBFAF7;--maxw:1120px;
+  --forest:#1C4220;--brass:#9C7A3C;--stone:#EFEDE6;--paper:#FBFAF7;--ink:#1E1D1A;
+  --forest-dark:var(--ink);
+  --dawn:rgba(251,250,247,.82);
+  --stone-deep:rgba(156,122,60,.28);
+  --ink-soft:rgba(30,29,26,.7);
+  --maxw:1120px;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;font-size:16px;}
@@ -56,7 +59,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offs
 .eyebrow.light{color:var(--dawn);}.eyebrow.light::before{background:var(--dawn);}
 .dark-hero{background:var(--forest);padding:80px 0 60px;}
 .dark-hero h1{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(28px,4vw,44px);line-height:1.18;color:var(--paper);margin:0 0 20px;max-width:22ch;}
-.dark-hero p{font-size:16.5px;line-height:1.72;color:rgba(220,227,220,.85);max-width:54ch;}
+.dark-hero p{font-size:16.5px;line-height:1.72;color:rgba(251,250,247,.85);max-width:54ch;}
 .btn-primary{font-family:'Inter',sans-serif;font-weight:600;font-size:14.5px;background:var(--forest);color:var(--paper);padding:12px 24px;border-radius:3px;border:none;cursor:pointer;transition:background .15s;display:inline-block;}
 .btn-primary:hover{background:var(--forest-dark);}
 .btn-on-forest{font-family:'Inter',sans-serif;font-weight:600;font-size:14.5px;background:var(--paper);color:var(--forest);padding:12px 26px;border-radius:3px;border:none;cursor:pointer;transition:background .15s;display:inline-block;}
@@ -69,12 +72,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offs
 /* FOOTER */
 footer.site{background:var(--ink);color:var(--dawn);padding:48px 0 28px;font-size:13px;}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;margin-bottom:32px;}
-.footer-col h4{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#8B9187;margin:0 0 12px;font-weight:500;}
+.footer-col h4{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(251,250,247,.55);margin:0 0 12px;font-weight:500;}
 .footer-col a,.footer-col p{display:block;color:var(--dawn);margin-bottom:8px;line-height:1.6;opacity:.88;font-size:13px;}
 .footer-col a:hover{opacity:1;text-decoration:underline;}
 .footer-word{font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:var(--paper);margin-bottom:8px;display:block;}
-.footer-addr{font-size:12px;color:#8B9187;line-height:1.7;margin-top:6px;}
-.footer-legal{border-top:1px solid #3A3D36;padding-top:22px;font-size:11.5px;color:#8B9187;line-height:1.7;}
+.footer-addr{font-size:12px;color:rgba(251,250,247,.55);line-height:1.7;margin-top:6px;}
+.footer-legal{border-top:1px solid rgba(156,122,60,.3);padding-top:22px;font-size:11.5px;color:rgba(251,250,247,.55);line-height:1.7;}
 .footer-legal p{margin:0 0 8px;}
 @media(max-width:760px){.footer-grid{grid-template-columns:1fr;gap:24px;}}
 
@@ -90,14 +93,14 @@ h1.hero-title em{font-style:italic;color:var(--forest);font-weight:400;}
 /* Services — two primary offerings */
 .services{background:var(--forest);padding:72px 0;}
 .services h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(22px,2.8vw,30px);color:var(--paper);margin-bottom:10px;}
-.services-sub{font-size:15.5px;color:rgba(220,227,220,.8);max-width:54ch;margin-bottom:44px;line-height:1.7;}
+.services-sub{font-size:15.5px;color:rgba(251,250,247,.8);max-width:54ch;margin-bottom:44px;line-height:1.7;}
 .services-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
-.service-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:36px 32px;}
-.service-card:hover{background:rgba(255,255,255,.08);}
-.service-num{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(202,204,203,.5);margin-bottom:18px;display:block;}
+.service-card{background:rgba(251,250,247,.05);border:1px solid rgba(251,250,247,.1);padding:36px 32px;}
+.service-card:hover{background:rgba(251,250,247,.08);}
+.service-num{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(251,250,247,.5);margin-bottom:18px;display:block;}
 .service-card h3{font-family:'Fraunces',serif;font-size:clamp(20px,2.2vw,26px);font-weight:400;color:var(--paper);margin-bottom:14px;line-height:1.25;}
-.service-card p{font-size:14.5px;line-height:1.72;color:rgba(220,227,220,.75);}
-.service-fee{display:inline-block;margin-top:22px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dawn);border-bottom:1px solid rgba(202,204,203,.35);padding-bottom:2px;}
+.service-card p{font-size:14.5px;line-height:1.72;color:rgba(251,250,247,.75);}
+.service-fee{display:inline-block;margin-top:22px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dawn);border-bottom:1px solid rgba(251,250,247,.35);padding-bottom:2px;}
 @media(max-width:700px){.services-grid{grid-template-columns:1fr;}}
 
 /* Gap stones */
@@ -119,7 +122,7 @@ h1.hero-title em{font-style:italic;color:var(--forest);font-weight:400;}
 .case-body{font-size:14.5px;line-height:1.75;color:var(--ink-soft);margin-bottom:20px;}
 .case-domains{display:flex;flex-wrap:wrap;gap:7px;}
 .case-domains span{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;background:var(--stone);color:var(--ink-soft);border-radius:2px;}
-.case-disclaimer{margin-top:28px;font-size:12px;color:var(--ink-faint);line-height:1.65;max-width:70ch;}
+.case-disclaimer{margin-top:28px;font-size:12px;color:var(--ink-soft);line-height:1.65;max-width:70ch;}
 @media(max-width:760px){.cases-grid{grid-template-columns:1fr;}.case-card{padding:22px;}}
 @media(max-width:700px){.course.c1,.course.c2,.course.c4{grid-template-columns:1fr;}}
 .stone-card{background:var(--stone);border:1px solid var(--stone-deep);}
@@ -160,7 +163,7 @@ h1.hero-title em{font-style:italic;color:var(--forest);font-weight:400;}
 /* CTA */
 .final-cta{background:var(--forest);color:var(--paper);padding:80px 0;text-align:center;}
 .final-cta h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(24px,3.5vw,36px);margin:0 0 16px;}
-.final-cta p{color:#DCE3DC;font-size:15.5px;max-width:44ch;margin:0 auto 30px;}
+.final-cta p{color:rgba(251,250,247,.82);font-size:15.5px;max-width:44ch;margin:0 auto 30px;}
 
 /* ========== PROCESS ========== */
 .process-intro{padding:72px 0 0;}
@@ -200,12 +203,12 @@ h1.hero-title em{font-style:italic;color:var(--forest);font-weight:400;}
 .process-download{background:var(--forest);padding:64px 0;}
 .process-download .wrap{display:grid;grid-template-columns:1fr auto;gap:44px;align-items:center;}
 .process-download h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(20px,2.6vw,28px);color:var(--paper);margin-bottom:10px;}
-.process-download p{font-size:14.5px;color:#DCE3DC;line-height:1.7;}
+.process-download p{font-size:14.5px;color:rgba(251,250,247,.82);line-height:1.7;}
 .pdf-gate{display:flex;gap:9px;}
-.pdf-input{padding:11px 13px;font-family:'Inter',sans-serif;font-size:14px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:var(--paper);border-radius:3px;outline:none;width:230px;transition:border .18s;}
-.pdf-input::placeholder{color:rgba(255,255,255,.38);}
-.pdf-input:focus{border-color:rgba(255,255,255,.55);}
-.pdf-sub{font-size:11.5px;color:rgba(255,255,255,.32);margin-top:8px;}
+.pdf-input{padding:11px 13px;font-family:'Inter',sans-serif;font-size:14px;background:rgba(251,250,247,.1);border:1px solid rgba(251,250,247,.25);color:var(--paper);border-radius:3px;outline:none;width:230px;transition:border .18s;}
+.pdf-input::placeholder{color:rgba(251,250,247,.38);}
+.pdf-input:focus{border-color:rgba(251,250,247,.55);}
+.pdf-sub{font-size:11.5px;color:rgba(251,250,247,.32);margin-top:8px;}
 @media(max-width:800px){.process-download .wrap{grid-template-columns:1fr;gap:24px;}.pdf-gate{flex-direction:column;}.pdf-input{width:100%;}}
 
 /* ========== INSIGHTS ========== */
@@ -250,10 +253,7 @@ h1.hero-title em{font-style:italic;color:var(--forest);font-weight:400;}
 .logo-chip{display:flex;flex-direction:column;align-items:center;gap:7px;min-width:96px;}
 .logo-icon{width:50px;height:50px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:10.5px;letter-spacing:.05em;border:1px solid var(--stone-deep);font-family:'IBM Plex Mono',monospace;}
 .logo-name{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
-.logo-altruist{background:#EEF2FF;color:#2D4EAF;border-color:#C8D4F8;}
-.logo-schwab{background:#EEF6EE;color:#1A6B1A;border-color:#C0DCC0;}
-.logo-emoney{background:#F3EEFF;color:#5B2D9A;border-color:#D8C8F8;}
-.logo-vanilla{background:#FFFBF0;color:#8B6914;border-color:#EDD898;}
+.logo-altruist,.logo-schwab,.logo-emoney,.logo-vanilla{background:var(--stone);color:var(--forest);border-color:var(--stone-deep);}
 @keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 .network-section{padding:72px 0;}
 .network-section h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(22px,2.8vw,30px);color:var(--ink);margin-bottom:10px;}
@@ -444,11 +444,10 @@ img,video{max-width:100%;height:auto;}
       <li><a onclick="showPage('home')" id="nav-home">About</a></li>
       <li><a onclick="showPage('process')" id="nav-process">Process</a></li>
       <li><a onclick="showPage('insights')" id="nav-insights">Insights</a></li>
-      <li><a onclick="showPage('resources')" id="nav-resources">Resources</a></li>
+      <li><a onclick="showPage('resources')" id="nav-resources">Partners</a></li>
       <li><a onclick="showPage('login')" id="nav-login">Client Login</a></li>
       <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
     </ul>
-    <button class="nav-cta" onclick="showPage('contact')">Start a Conversation</button>
     <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -461,11 +460,10 @@ img,video{max-width:100%;height:auto;}
     <li><a onclick="mobileNav('home')">About</a></li>
     <li><a onclick="mobileNav('process')">Process</a></li>
     <li><a onclick="mobileNav('insights')">Insights</a></li>
-    <li><a onclick="mobileNav('resources')">Resources</a></li>
+    <li><a onclick="mobileNav('resources')">Partners</a></li>
     <li><a onclick="mobileNav('login')">Client Login</a></li>
     <li><a onclick="mobileNav('contact')">Contact</a></li>
   </ul>
-  <button class="mobile-cta" onclick="mobileNav('contact')">Start a Conversation</button>
 </nav>
 
 <!-- ===================== HOME / ABOUT ===================== -->
@@ -475,8 +473,7 @@ img,video{max-width:100%;height:auto;}
   <section class="hero">
     <div class="wrap">
       <div class="eyebrow">Independent Portfolio Management &middot; Austin, TX</div>
-      <h1 class="hero-title">Helping people live more <em>fulfilled</em> and more impactful lives.</h1>
-      <p class="hero-sub">Fieldstone Advisory is an independent portfolio management firm. We help individuals, families, and communities build wealth and make better financial decisions — through disciplined investment management and clear, written financial planning.</p>
+      <p class="hero-sub">Fieldstone Advisory is an independent wealth management firm that exists to help individuals, families, organizations, and communities steward resources and make better financial decisions – through disciplined investment management and clear, written financial planning.</p>
       <div class="hero-actions">
         <button class="btn-primary" onclick="showPage('contact')">Start a Conversation</button>
         <button class="btn-ghost" onclick="document.getElementById('services-anchor').scrollIntoView({behavior:'smooth'})">See our services &darr;</button>
@@ -484,7 +481,6 @@ img,video{max-width:100%;height:auto;}
       <div class="hero-frame">
         <div>Fee-only &middot; <span>No commissions</span></div>
         <div>Independent RIA &middot; <span>Texas</span></div>
-        <div>Series <span>7</span> &amp; <span>66</span> Licensed</div>
       </div>
     </div>
   </section>
@@ -501,12 +497,12 @@ img,video{max-width:100%;height:auto;}
           <h3>Discretionary Portfolio Management</h3>
           <p>Disciplined, discretionary management of public equity, fixed income, and alternative investments. We build and manage your portfolio directly — handling all investment decisions, rebalancing, and tax-conscious execution on your behalf.</p>
           <span class="service-fee">Recurring AUM-based fee</span>
-          <p style="font-size:12px;color:rgba(220,227,220,.5);margin-top:16px;line-height:1.55;">Portfolio management decisions may have tax consequences. Fieldstone does not provide tax advice; consult your tax advisor regarding your specific situation.</p>
+          <p style="font-size:12px;color:rgba(251,250,247,.5);margin-top:16px;line-height:1.55;">Portfolio management decisions may have tax consequences. Fieldstone does not provide tax advice; consult your tax advisor regarding your specific situation.</p>
         </div>
         <div class="service-card">
           <span class="service-num">Service 02</span>
           <h3>Written Financial Plan</h3>
-          <p>A comprehensive written financial plan delivered as a standalone engagement. We analyze your full financial picture — cash flow, tax situation, goals, risk, estate, and insurance — and deliver a clear, actionable document you can implement with or without us. Scoped and priced as a flat project fee before any work begins.</p>
+          <p>A written financial plan delivered as a standalone engagement. We analyze your full financial picture — cash flow, tax situation, goals, risk, estate, and insurance — and deliver a clear, actionable document you can implement with or without us. Scoped and priced as a flat project fee before any work begins.</p>
           <span class="service-fee">Flat project-based fee</span>
         </div>
       </div>
@@ -618,86 +614,6 @@ img,video{max-width:100%;height:auto;}
     </div>
   </section>
 
-  <!-- CASE STUDIES -->
-  <section class="case-studies">
-    <div class="wrap">
-      <div class="section-head" data-reveal>
-        <div class="eyebrow">In practice</div>
-        <h2>What this work actually looks like.</h2>
-        <p>These are the kinds of situations where all seven areas have to work together at once.</p>
-      </div>
-      <div class="cases-grid">
-        <div class="case-card" data-reveal>
-          <div class="case-tag">Equity compensation &amp; life planning</div>
-          <h3 class="case-name">Ryan &amp; Mia</h3>
-          <p class="case-body">Newlyweds holding founder-level stock options and no shared financial plan. Together, they mapped an exercise strategy to manage AMT exposure, built a diversification timeline around vesting cliffs, and aligned equity decisions with home-buying and retirement goals — turning a complex compensation package into a coordinated piece of their plan.</p>
-          <div class="case-domains">
-            <span>Tax</span><span>Asset management</span><span>Fundamentals</span><span>Financial independence</span>
-          </div>
-        </div>
-        <div class="case-card" data-reveal>
-          <div class="case-tag">Estate transition &amp; family planning</div>
-          <h3 class="case-name">Marcus's family</h3>
-          <p class="case-body">When Marcus passed away unexpectedly, his family faced a wall of decisions while still in shock. Estate visualization software mapped the full picture instantly — assets, deadlines, tax elections, beneficiary paths. But clarity wasn't the same as readiness. The advisor separated the truly urgent from everything else, giving the family a short list of must-dos and permission to wait on the rest — so grief had room to breathe, and decisions came when the family was ready to make them.</p>
-          <div class="case-domains">
-            <span>Estate &amp; legacy</span><span>Tax</span><span>Behavioral finance</span>
-          </div>
-        </div>
-      </div>
-      <p class="case-disclaimer">These scenarios are illustrative examples intended to demonstrate our approach and are not based on specific client engagements. Individual circumstances vary. Past guidance does not guarantee future outcomes.</p>
-    </div>
-  </section>
-
-  <!-- WHO WE WORK WITH -->
-  <section class="whowe">
-    <div class="wrap">
-      <h2>Who we work with</h2>
-      <ul class="whowe-list">
-        <li><strong>Business owners</strong> whose wealth is tied up in something they built, not just what's sitting in a brokerage account.</li>
-        <li><strong>Executives and high-income professionals</strong> with equity comp, concentrated stock, and more complexity than a basic model portfolio can handle.</li>
-        <li><strong>Wealth in transition</strong> — a sale, an inheritance, a divorce, a career change — where the plan you had no longer fits the life you have.</li>
-        <li>What connects our clients isn't a single event or a balance sheet size. It's a shared belief that financial decisions should serve a purpose — and a desire to work with an advisor who treats them that way.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- BACKGROUND + PRINCIPLES -->
-  <section class="home-background">
-    <div class="wrap">
-      <div class="eyebrow">Background</div>
-      <p>Fieldstone Advisory was founded by Noah Remmert, an Austin-based investment advisor with direct experience managing client relationships across a broad range of complexity — from individual households to ultra-high-net-worth families. Fieldstone is an independent, fee-only registered investment adviser with the Texas State Securities Board, holding active Series 7 and Series 66 licenses.</p>
-      <div class="principles-list" data-reveal>
-        <div class="principle-item">
-          <span class="principle-num">01</span>
-          <h4>Fundamentally Strong</h4>
-          <p>Every decision starts with sound financial principles — cash flow, valuation, risk, and return. We build on fundamentals, not trends.</p>
-        </div>
-        <div class="principle-item">
-          <span class="principle-num">02</span>
-          <h4>Risk-Adjusted</h4>
-          <p>We manage for the long-term investor — accounting for volatility, sequence risk, and the behavioral reality of real market cycles.</p>
-        </div>
-        <div class="principle-item">
-          <span class="principle-num">03</span>
-          <h4>Values-Based</h4>
-          <p>A portfolio should reflect what a client believes and what they're working toward — not a generic model applied without context.</p>
-        </div>
-        <div class="principle-item">
-          <span class="principle-num">04</span>
-          <h4>Dynamic</h4>
-          <p>We employ Strategic Asset Allocation and a Total Portfolio Approach — disciplined long-term structure, with new information incorporated proactively through human judgment.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="final-cta">
-    <div class="wrap">
-      <h2>More fulfilled. More impactful. Better decisions.</h2>
-      <p>A first conversation costs nothing. We'll spend 30 minutes on your situation and you'll leave with a clear sense of whether Fieldstone is the right fit.</p>
-      <button class="btn-on-forest" onclick="showPage('contact')">Start a Conversation</button>
-    </div>
-  </section>
 
 </main>
 <footer class="site">
@@ -713,7 +629,7 @@ img,video{max-width:100%;height:auto;}
         <a onclick="showPage('home')" style="cursor:pointer">About</a>
         <a onclick="showPage('process')" style="cursor:pointer">Process</a>
         <a onclick="showPage('insights')" style="cursor:pointer">Insights</a>
-        <a onclick="showPage('resources')" style="cursor:pointer">Resources</a>
+        <a onclick="showPage('resources')" style="cursor:pointer">Partners</a>
         <a onclick="showPage('contact')" style="cursor:pointer">Contact</a>
       </div>
       <div class="footer-col">
@@ -815,7 +731,7 @@ img,video{max-width:100%;height:auto;}
           <div class="step-num">05</div>
           <div class="step-body">
             <h3>Plan &amp; Portfolio Design</h3>
-            <p>For portfolio management clients: a portfolio built using Fieldstone's Total Portfolio Approach, matched to your goals, time horizon, and risk tolerance. For financial planning clients: a comprehensive written plan delivered as a clear, actionable document. Both are explained in full before implementation.</p>
+            <p>For portfolio management clients: a portfolio built using Fieldstone's Total Portfolio Approach, matched to your goals, time horizon, and risk tolerance. For financial planning clients: a full written plan delivered as a clear, actionable document. Both are explained in full before implementation.</p>
             <span class="step-tag">Written deliverable confirmed before implementation</span>
           </div>
         </div>
@@ -841,20 +757,6 @@ img,video{max-width:100%;height:auto;}
     </div>
   </section>
 
-  <!-- PRINCIPLES -->
-  <section class="process-principles-section">
-    <div class="wrap">
-      <div class="eyebrow">Investment principles</div>
-      <div class="section-head"><h2>The framework behind every portfolio we manage.</h2></div>
-      <div class="mini-principles">
-        <div class="mini-principle"><h4>Fundamentally Strong</h4><p>Built on sound financial principles — not trends or narratives. Valuation, cash flow, and risk discipline anchor every decision.</p></div>
-        <div class="mini-principle"><h4>Risk-Adjusted</h4><p>We manage for the long-term investor, accounting for volatility and the real cost of sequence risk across a client's full time horizon.</p></div>
-        <div class="mini-principle"><h4>Values-Based</h4><p>A portfolio should reflect what a client believes and what they're working toward — not a generic model applied without context.</p></div>
-        <div class="mini-principle"><h4>Dynamic</h4><p>SAA establishes the long-term structure. Our Total Portfolio Approach incorporates new information proactively, guided by human judgment.</p></div>
-      </div>
-    </div>
-  </section>
-
   <!-- PDF GATE -->
   <section class="process-download">
     <div class="wrap">
@@ -876,7 +778,7 @@ img,video{max-width:100%;height:auto;}
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-col"><span class="footer-word">Fieldstone Advisory</span><p>An independent, fee-only portfolio management firm based in Austin, Texas.</p><div class="footer-addr">5209 Burnet Rd, 2nd Floor<br>Austin, TX 78756</div></div>
-      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">About</a><a onclick="showPage('process')" style="cursor:pointer">Process</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Resources</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
+      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">About</a><a onclick="showPage('process')" style="cursor:pointer">Process</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Partners</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
       <div class="footer-col"><h4>Disclosures</h4><a href="#">Form ADV Part 2A</a><a href="#">Form CRS</a><a href="#">Privacy Policy</a><a href="mailto:noah@fieldstone-advisory.com">noah@fieldstone-advisory.com</a></div>
     </div>
     <div class="footer-legal"><p>Fieldstone Advisory, LLC is a registered investment adviser in the State of Texas. Registration does not imply a certain level of skill or training. This website is for informational purposes only and does not constitute investment, legal, or tax advice. Actual timelines and steps may vary based on individual circumstances.</p><p>&copy; 2025 Fieldstone Advisory, LLC. All rights reserved.</p></div>
@@ -947,7 +849,7 @@ img,video{max-width:100%;height:auto;}
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-col"><span class="footer-word">Fieldstone Advisory</span><p>An independent, fee-only portfolio management firm based in Austin, Texas.</p><div class="footer-addr">5209 Burnet Rd, 2nd Floor<br>Austin, TX 78756</div></div>
-      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">About</a><a onclick="showPage('process')" style="cursor:pointer">Process</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Resources</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
+      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">About</a><a onclick="showPage('process')" style="cursor:pointer">Process</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Partners</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
       <div class="footer-col"><h4>Disclosures</h4><a href="#">Form ADV Part 2A</a><a href="#">Form CRS</a><a href="#">Privacy Policy</a><a href="mailto:noah@fieldstone-advisory.com">noah@fieldstone-advisory.com</a></div>
     </div>
     <div class="footer-legal"><p>Fieldstone Advisory, LLC is a registered investment adviser in the State of Texas. External links are provided for informational purposes only. Fieldstone does not endorse third-party content.</p><p>&copy; 2025 Fieldstone Advisory, LLC. All rights reserved.</p></div>
@@ -960,7 +862,7 @@ img,video{max-width:100%;height:auto;}
 <main>
   <div class="dark-hero">
     <div class="wrap">
-      <div class="eyebrow light">Resources &amp; network</div>
+      <div class="eyebrow light">Partners &amp; network</div>
       <h1>The platforms and people behind the practice.</h1>
       <p>The technology we use on your behalf — and the professional relationships we draw on when your situation calls for a specialist.</p>
     </div>
@@ -987,7 +889,6 @@ img,video{max-width:100%;height:auto;}
   <section class="network-section">
     <div class="wrap">
       <div class="eyebrow">Professional network</div>
-      <h2>We don't pretend to be everything. We know who to call.</h2>
       <p class="network-intro">Fieldstone maintains working relationships with experienced professionals across the disciplines that intersect with financial planning — so clients have access to qualified guidance without having to source it themselves.</p>
       <div class="network-grid">
         <div class="network-card"><div class="network-bar"></div><h4>Tax &amp; Accounting</h4><p>CPA relationships across individual, business, and trust taxation — equity compensation, multi-state filing, and high-net-worth planning. We coordinate directly so nothing falls between the tax return and the financial plan.</p></div>
@@ -1005,7 +906,7 @@ img,video{max-width:100%;height:auto;}
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-col"><span class="footer-word">Fieldstone Advisory</span><p>An independent, fee-only portfolio management firm based in Austin, Texas.</p><div class="footer-addr">5209 Burnet Rd, 2nd Floor<br>Austin, TX 78756</div></div>
-      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">About</a><a onclick="showPage('process')" style="cursor:pointer">Process</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Resources</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
+      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">About</a><a onclick="showPage('process')" style="cursor:pointer">Process</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Partners</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
       <div class="footer-col"><h4>Disclosures</h4><a href="#">Form ADV Part 2A</a><a href="#">Form CRS</a><a href="#">Privacy Policy</a><a href="mailto:noah@fieldstone-advisory.com">noah@fieldstone-advisory.com</a></div>
     </div>
     <div class="footer-legal"><p>Fieldstone Advisory, LLC is a registered investment adviser in the State of Texas. Professional network relationships do not constitute a guarantee of services and Fieldstone does not receive compensation for referrals.</p><p>&copy; 2025 Fieldstone Advisory, LLC. All rights reserved.</p></div>
@@ -1058,7 +959,7 @@ img,video{max-width:100%;height:auto;}
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-col"><span class="footer-word">Fieldstone Advisory</span><p>An independent, fee-only portfolio management firm based in Austin, Texas.</p><div class="footer-addr">5209 Burnet Rd, 2nd Floor<br>Austin, TX 78756</div></div>
-      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">About</a><a onclick="showPage('process')" style="cursor:pointer">Process</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Resources</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
+      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">About</a><a onclick="showPage('process')" style="cursor:pointer">Process</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Partners</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
       <div class="footer-col"><h4>Disclosures</h4><a href="#">Form ADV Part 2A</a><a href="#">Form CRS</a><a href="#">Privacy Policy</a><a href="mailto:noah@fieldstone-advisory.com">noah@fieldstone-advisory.com</a></div>
     </div>
     <div class="footer-legal"><p>Fieldstone Advisory, LLC is a registered investment adviser in the State of Texas. Third-party platform links are provided for client convenience. Fieldstone is not responsible for the content or availability of external platforms.</p><p>&copy; 2025 Fieldstone Advisory, LLC. All rights reserved.</p></div>
@@ -1072,8 +973,7 @@ img,video{max-width:100%;height:auto;}
   <div class="dark-hero">
     <div class="wrap">
       <div class="eyebrow light">Contact</div>
-      <h1>Let's find out if Fieldstone is the right fit.</h1>
-      <p>A first conversation costs nothing and commits to nothing.</p>
+      <h1>Please feel comfortable reaching out to us with questions about Fieldstone or your individual situation.</h1>
     </div>
   </div>
   <section class="contact-section">
@@ -1110,7 +1010,7 @@ img,video{max-width:100%;height:auto;}
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-col"><span class="footer-word">Fieldstone Advisory</span><p>An independent, fee-only portfolio management firm based in Austin, Texas.</p><div class="footer-addr">5209 Burnet Rd, 2nd Floor<br>Austin, TX 78756</div></div>
-      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">About</a><a onclick="showPage('process')" style="cursor:pointer">Process</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Resources</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
+      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">About</a><a onclick="showPage('process')" style="cursor:pointer">Process</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Partners</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
       <div class="footer-col"><h4>Disclosures</h4><a href="#">Form ADV Part 2A</a><a href="#">Form CRS</a><a href="#">Privacy Policy</a><a href="mailto:noah@fieldstone-advisory.com">noah@fieldstone-advisory.com</a></div>
     </div>
     <div class="footer-legal"><p>Fieldstone Advisory, LLC is a registered investment adviser in the State of Texas. Registration does not imply a certain level of skill or training. This website is for informational purposes only and does not constitute an offer to sell, or a solicitation of an offer to buy, any security. Advisory services are offered only to clients pursuant to a written agreement.</p><p>&copy; 2025 Fieldstone Advisory, LLC. All rights reserved.</p></div>
@@ -1162,7 +1062,7 @@ function handleFormSubmit(e){
   e.preventDefault();
   var btn=e.target.querySelector('button[type=submit]');
   btn.textContent="Message sent — we'll be in touch.";
-  btn.disabled=true;btn.style.background='#2E5C45';
+  btn.disabled=true;btn.style.background='rgba(28,66,32,.7)';
 }
 
 initStones();
