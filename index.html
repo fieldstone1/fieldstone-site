@@ -1332,6 +1332,8 @@ img,video{max-width:100%;height:auto;}
       <div class="form-wrap">
         <h2>Or send a note.</h2>
         <form onsubmit="handleFormSubmit(event)">
+          <input type="hidden" name="_subject" value="New inquiry from fieldstone-advisory.com">
+          <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
           <div class="form-row">
             <div class="form-group"><label class="form-label">First name</label><input class="form-input" type="text" name="first_name" placeholder="First" required /></div>
             <div class="form-group"><label class="form-label">Last name</label><input class="form-input" type="text" name="last_name" placeholder="Last" required /></div>
@@ -1539,8 +1541,8 @@ function initReveal(){
   }
 }
 
-/* Contact form. Set `action` to your form service endpoint (e.g. a Formspree or Web3Forms URL). */
-var CONTACT_FORM={action:''};
+/* Contact form. Posts to Formspree (https://formspree.io); submissions are emailed to the form owner. */
+var CONTACT_FORM={action:'https://formspree.io/f/xqpepyqj'};
 function handleFormSubmit(e){
   e.preventDefault();
   var form=e.target;
@@ -1556,6 +1558,7 @@ function handleFormSubmit(e){
     if(!r.ok) throw new Error('bad status');
     form.reset();
     btn.textContent="Message sent. We'll be in touch.";
+    status.textContent='Thank you. Your message was sent, and we will reply by email.';
   }).catch(function(){
     btn.disabled=false;
     status.textContent='Something went wrong. Please email noah@fieldstone-advisory.com or book a call.';
