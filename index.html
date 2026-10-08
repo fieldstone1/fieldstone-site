@@ -1410,6 +1410,10 @@ img,video{max-width:100%;height:auto;}
 const pages=['about','home','portfolio','planning','insights','resources','login','contact'];
 const navMap={about:'nav-about',home:'nav-home',portfolio:'nav-portfolio',planning:'nav-planning',insights:'nav-insights',resources:'nav-resources',login:'nav-login',contact:'nav-contact'};
 
+/* Spam guard: bots submit within a moment of a page appearing; people take longer. */
+var siteLoadedAt=Date.now(), pageShownAt={};
+function tooSoon(name,ms){return Date.now()-(pageShownAt[name]||siteLoadedAt)<ms;}
+
 function showPage(name){
   var current=document.querySelector('.page.active');
   if(current&&current.id==='page-'+name){
@@ -1424,6 +1428,7 @@ function showPage(name){
     });
     var servicesTrigger=document.getElementById('nav-services');
     if(servicesTrigger) servicesTrigger.classList.toggle('active-link',name==='portfolio'||name==='planning');
+    pageShownAt[name]=Date.now();
     window.scrollTo({top:0,behavior:'instant'});
     initStones();
     initReveal();
@@ -1507,6 +1512,10 @@ function initSignup(){
       return;
     }
     if(form.elements['website'].value) return;
+    if(tooSoon('insights',2000)){
+      status.textContent='One moment, then please try again.';
+      return;
+    }
     if(!MAILING_LIST.action){
       status.textContent='Sign-ups open shortly. In the meantime, email noah@fieldstone-advisory.com and we\u2019ll add you to the list.';
       return;
@@ -1603,6 +1612,15 @@ function handleFormSubmit(e){
   status.textContent='';
   if(!CONTACT_FORM.action){
     status.textContent='Our online form is not active yet. Please email noah@fieldstone-advisory.com or book a call.';
+    return;
+  }
+  if(form.elements['_gotcha']&&form.elements['_gotcha'].value){
+    btn.disabled=true;
+    btn.textContent="Message sent. We'll be in touch.";
+    return;
+  }
+  if(tooSoon('contact',3000)){
+    status.textContent='Please take a moment to review your message, then send it again.';
     return;
   }
   btn.disabled=true;
