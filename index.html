@@ -1438,8 +1438,12 @@ function initHeroFacts(){
   });
 }
 
-/* Email list sign-up. Set `action` to your provider's form-post URL (Mailchimp: Audience > Signup forms > Embedded forms > the form's action="..."). */
-var MAILING_LIST={action:'',emailField:'EMAIL'};
+/* Email list sign-up. Posts to the Mailchimp audience's embedded-form URL. `honeypot` is Mailchimp's hidden bot-trap field and must be sent empty. */
+var MAILING_LIST={
+  action:'https://fieldstone-advisory.us14.list-manage.com/subscribe/post?u=a289e2ecf60525716d6911939&id=fa3bb1598c&f_id=00a5b4e5f0',
+  emailField:'EMAIL',
+  honeypot:'b_a289e2ecf60525716d6911939_fa3bb1598c'
+};
 function initSignup(){
   var form=document.getElementById('signup-form');
   if(!form) return;
@@ -1462,8 +1466,9 @@ function initSignup(){
     }
     var btn=form.querySelector('button[type=submit]');
     btn.disabled=true;
-    var body=new FormData();
+    var body=new URLSearchParams();
     body.append(MAILING_LIST.emailField,value);
+    body.append(MAILING_LIST.honeypot,'');
     fetch(MAILING_LIST.action,{method:'POST',mode:'no-cors',body:body}).then(function(){
       card.classList.add('done');
     }).catch(function(){
