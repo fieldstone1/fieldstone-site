@@ -171,6 +171,14 @@ h1.hero-title em{font-style:italic;color:var(--forest);font-weight:400;}
 .service-card h3{font-family:'Fraunces',serif;font-size:clamp(20px,2.2vw,26px);font-weight:400;color:var(--paper);margin-bottom:14px;line-height:1.25;}
 .service-card p{font-size:14.5px;line-height:1.72;color:rgba(251,250,247,.75);}
 .service-fee{display:inline-block;margin-top:22px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dawn);border-bottom:1px solid rgba(251,250,247,.35);padding-bottom:2px;}
+.services-included{margin-top:3px;padding:28px 32px;background:rgba(251,250,247,.05);border:1px solid rgba(251,250,247,.1);border-top:2px solid var(--brass);}
+.services-included .service-num{margin-bottom:10px;}
+.services-included .services-included-lead{font-size:15.5px;line-height:1.7;color:rgba(251,250,247,.9);max-width:70ch;}
+.services-included-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:22px;padding-top:22px;border-top:1px solid rgba(251,250,247,.12);}
+.si-name{display:block;font-family:'Fraunces',serif;font-size:19px;color:var(--paper);margin-bottom:6px;}
+.si-item p{font-size:14px;line-height:1.65;color:rgba(251,250,247,.75);}
+@media(max-width:860px){.services-included-grid{grid-template-columns:1fr;gap:20px;}}
+@media(max-width:760px){.services-included{padding:22px 22px;}}
 .service-more{display:block;margin-top:18px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:var(--paper);}
 .service-card:hover .service-more,.service-card:focus-visible .service-more{text-decoration:underline;}
 @media(max-width:700px){.services-grid{grid-template-columns:1fr;}}
@@ -682,7 +690,7 @@ img,video{max-width:100%;height:auto;}
       <div class="section-head" data-reveal>
         <div class="eyebrow">Our name</div>
         <h2>Why Fieldstone?</h2>
-        <p>I grew up on a street called Fieldstone Drive in Southwest Austin. I always liked the name &mdash; and I feel that it fits the &ldquo;why&rdquo; behind what I do day to day. I hope to always be a guiding force for people in my community to build a strong financial foundation and live on purpose and generously as a result.</p>
+        <p>I grew up on a street called Fieldstone Drive in Southwest Austin. I always liked the name, and I feel it fits the &ldquo;why&rdquo; behind what I do every day. I hope to always be a guiding force for people in my community, helping them build a strong financial foundation and live purposefully and generously as a result.</p>
       </div>
     </div>
   </section>
@@ -693,10 +701,10 @@ img,video{max-width:100%;height:auto;}
       <div class="section-head" data-reveal>
         <div class="eyebrow">A note from the founder</div>
         <h2>Hi, thanks for visiting.</h2>
-        <p>My name is Noah Remmert. I&rsquo;m an Austin native and the founder of Fieldstone Advisory. After studying Finance and Portfolio management at LSU, I returned to Texas to join a local RIA and serve clients ranging from young professionals and emerging wealth to ultra-high net worth founders and families.</p>
-        <p>I&rsquo;ve founded this practice to serve as an independent platform for myself, and in the future, other advisors to provide impactful financial guidance and resources to members of my community at a fair price.</p>
-        <p>When not working on the practice, I like to spend time with my wife, Sydney, and my pup, Addie. We attend Red Rocks Church in Austin. We love to travel and see live music. I&rsquo;m always up for a round of golf. I am an aviation enthusiast and aspiring private pilot.</p>
-        <p>Whether you are contemplating uploading your entire financial life to an AI model, facing a challenging life transition, or just hoping to learn more about financial planning &amp; investing, I am happy to connect with you.</p>
+        <p>My name is Noah Remmert. I&rsquo;m an Austin native and the founder of Fieldstone Advisory. After studying finance and portfolio management at LSU, I returned to Texas to join a local RIA and serve clients ranging from young professionals and emerging-wealth households to ultra-high-net-worth founders and families.</p>
+        <p>I founded this practice as an independent platform where I and, in the future, other advisors can provide impactful financial guidance and resources to members of my community at a fair price.</p>
+        <p>When I&rsquo;m not working on the practice, I like to spend time with my wife, Sydney, and my pup, Addie. We attend Red Rocks Church in Austin. We love to travel and see live music. I&rsquo;m always up for a round of golf. I am an aviation enthusiast and aspiring private pilot.</p>
+        <p>Whether you are contemplating uploading your entire financial life to an AI model, facing a challenging life transition, or just hoping to learn more about financial planning and investing, I am happy to connect with you.</p>
         <p class="founder-sign">&mdash; Noah</p>
       </div>
       <div class="founder-gallery" data-reveal>
@@ -788,6 +796,15 @@ img,video{max-width:100%;height:auto;}
           <span class="service-more">Learn more &rarr;</span>
         </div>
       </div>
+      <div class="services-included">
+        <span class="service-num">Our software stack</span>
+        <p class="services-included-lead">All planning engagements with the firm include access to, and guidance on using, our personal financial software stack.</p>
+        <div class="services-included-grid">
+          <div class="si-item"><span class="si-name">eMoney</span><p>Live SOC 2 account integration to manage all financial statements and build planning and tax projections.</p></div>
+          <div class="si-item"><span class="si-name">Vanilla</span><p>Integrated with your eMoney profile to go deeper on estate plan visualization and understanding.</p></div>
+          <div class="si-item"><span class="si-name">Altruist</span><p>Access to Altruist, our custodian and portfolio reporting platform, is included with AUM engagements.</p></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -797,7 +814,7 @@ img,video{max-width:100%;height:auto;}
       <div class="section-head" data-reveal>
         <div class="eyebrow">Where we add value</div>
         <h2>Seven areas. One integrated picture.</h2>
-        <p>Financial wellbeing isn't one problem — it's seven that interact. We work across all of them so nothing is optimized in isolation.</p>
+        <p>Financial well-being isn't one problem — it's seven that interact. We work across all of them so nothing is optimized in isolation.</p>
       </div>
       <div class="wheel-layout">
         <div class="wheel">
@@ -820,12 +837,12 @@ img,video{max-width:100%;height:auto;}
           <div class="wheel-panel" id="wheel-panel-1">
             <span class="wheel-panel-label">Asset &amp; Portfolio Management</span>
             <p class="wheel-hook">Helping clients understand risk &amp; return to build an investment portfolio suited to their individual needs.</p>
-            <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Discretionary management of public equity, fixed income, and alternatives — constructed around your goals, time horizon, values, and risk tolerance using a Total Portfolio Approach.</p></div>
+            <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Discretionary management of public equity, fixed income, and alternatives, constructed around your goals, time horizon, values, and life and income needs.</p></div>
             <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">Most people's portfolios reflect a series of disconnected decisions. We build from a complete picture and manage it as one coherent strategy.</p></div>
           </div>
           <div class="wheel-panel" id="wheel-panel-2">
             <span class="wheel-panel-label">Tax</span>
-            <p class="wheel-hook">Filing correctly and paying the least you legally owe are two different jobs. Most people only get the first one.</p>
+            <p class="wheel-hook">Filing correctly and paying the least you legally owe are two different jobs. Our goal is to help clients pay what they legally owe, and not a dollar more, by aligning their plan with their goals and with industry best practices and economic incentives.</p>
             <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Tax-conscious portfolio construction, income timing, account location strategy, and coordination with your CPA around events that have planning implications. Fieldstone does not provide tax advice — we provide context and coordinate with your tax advisor.</p></div>
             <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">The gap between a good tax return and a good tax strategy compounds over decades. We help close it.</p></div>
           </div>
@@ -845,7 +862,7 @@ img,video{max-width:100%;height:auto;}
             <span class="wheel-panel-label">Risk &amp; Insurance</span>
             <p class="wheel-hook">As a fee-only firm, we don't sell insurance — so our analysis isn't shaped by what pays a commission.</p>
             <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Coverage adequacy review across life, disability, long-term care, and property — analyzed against your actual balance sheet and financial plan, not against a sales quota.</p></div>
-            <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">Most people have some coverage. Whether it's the right kind, in the right amount, structured correctly — that's usually never been verified by someone without a product to sell.</p></div>
+            <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">Most people have some coverage. Whether it's the right kind, in the right amount, structured correctly — that's rarely been verified by someone without a product to sell.</p></div>
           </div>
           <div class="wheel-panel" id="wheel-panel-6">
             <span class="wheel-panel-label">Behavioral Finance</span>
@@ -909,7 +926,7 @@ img,video{max-width:100%;height:auto;}
       <div class="section-head" data-reveal>
         <div class="eyebrow">How we manage</div>
         <h2>Long-term value, added at every stage.</h2>
-        <p>Fieldstone is a discretionary portfolio manager that delivers institutional-quality investment concepts and execution at a fair cost to the investor. Our guidance is shaped by fundamental investment concepts and macroeconomic market cycles — applied consistently across the entire investment lifecycle.</p>
+        <p>Fieldstone is a discretionary portfolio manager that delivers institutional-quality investment concepts and execution at a fair cost to the investor. Our guidance is shaped by fundamental analysis and macroeconomic market cycles — applied consistently across the entire investment lifecycle.</p>
       </div>
 
       <div class="path-track" role="tablist" aria-label="Investment lifecycle stages">
@@ -941,14 +958,14 @@ img,video{max-width:100%;height:auto;}
           <span class="path-panel-num">Stage 01</span>
           <h3>Acquisition &amp; Accumulation</h3>
           <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Whenever new capital enters the picture — savings, a bonus, a liquidity event, an inheritance — we determine how and when it should be deployed, with intentional timing rather than a single lump-sum reflex.</p></div>
-          <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">Rushing new capital into the market — or leaving it sitting in cash out of hesitation — are both common, costly mistakes. The entry decision sets the tone for everything that follows.</p></div>
+          <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">Rushing new capital into the market and leaving it in cash out of hesitation are both common, costly mistakes. The entry decision sets the tone for everything that follows.</p></div>
           <button class="path-next" type="button" data-goto="1">Next: Structuring &rarr;</button>
         </div>
         <div class="path-panel" id="path-panel-1" role="tabpanel">
           <span class="path-panel-num">Stage 02</span>
           <h3>Structuring</h3>
           <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Selecting and organizing the accounts that will hold your assets — taxable, tax-deferred, and tax-exempt — with titling and beneficiary designations that match your broader plan.</p></div>
-          <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">The wrong account for the wrong purpose is one of the most common — and most preventable — costs we see. Structure decided early avoids years of unwinding it later.</p></div>
+          <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">The wrong account for the wrong purpose is one of the most common — and most preventable — costs we see. Deciding structure early avoids years of unwinding it later.</p></div>
           <button class="path-next" type="button" data-goto="2">Next: Allocation &rarr;</button>
         </div>
         <div class="path-panel" id="path-panel-2" role="tabpanel">
@@ -1167,7 +1184,7 @@ img,video{max-width:100%;height:auto;}
         <div class="signup-copy">
           <div class="eyebrow">Fieldstone updates</div>
           <h2>Stay connected to the practice.</h2>
-          <p>Our latest thinking on markets, planning, and relevant info for informed investors.</p>
+          <p>Our latest thinking on markets, planning, and other information relevant to informed investors.</p>
           <ul class="signup-list">
             <li><strong>Market perspective</strong>Our read on market conditions and portfolio positioning, and what they mean for long-term investors.</li>
             <li><strong>Planning ideas</strong>Practical thinking on the planning themes most relevant to our clients.</li>
