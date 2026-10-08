@@ -67,7 +67,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offs
 .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .nav-hamburger.open span:nth-child(2){opacity:0;}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.mobile-nav{display:none;position:fixed;inset:0;top:57px;background:var(--paper);z-index:49;padding:24px 20px;border-top:1px solid var(--stone-deep);overflow-y:auto;}
+.mobile-nav{display:none;position:fixed;inset:0;top:57px;background:var(--paper);z-index:49;padding:24px 20px;border-top:1px solid var(--stone-deep);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;}
+html.nav-open,html.nav-open body{overflow:hidden;overscroll-behavior:none;}
 .mobile-nav.open{display:block;animation:fieldstoneSlideDown .22s ease;}
 .mobile-nav ul li a{transition:color .15s ease,padding-left .15s ease;}
 .mobile-nav ul li a:hover,.mobile-nav ul li a:focus-visible{color:var(--forest);padding-left:4px;}
@@ -1640,31 +1641,41 @@ if(navDropdown){
 /* Hamburger */
 var hamburger=document.getElementById('hamburger');
 var mobileNavEl=document.getElementById('mobile-nav');
+function setNavOpen(open){
+  mobileNavEl.classList.toggle('open',open);
+  hamburger.classList.toggle('open',open);
+  hamburger.setAttribute('aria-expanded',String(open));
+  document.documentElement.classList.toggle('nav-open',open);
+}
 hamburger.addEventListener('click',function(){
-  var isOpen=mobileNavEl.classList.contains('open');
-  mobileNavEl.classList.toggle('open',!isOpen);
-  hamburger.classList.toggle('open',!isOpen);
-  hamburger.setAttribute('aria-expanded',String(!isOpen));
-  document.body.style.overflow=isOpen?'':'hidden';
+  setNavOpen(!mobileNavEl.classList.contains('open'));
 });
 
 function mobileNav(name){
-  mobileNavEl.classList.remove('open');
-  hamburger.classList.remove('open');
-  hamburger.setAttribute('aria-expanded','false');
-  document.body.style.overflow='';
+  setNavOpen(false);
   showPage(name);
 }
 
 /* Close mobile nav on outside tap */
 document.addEventListener('click',function(e){
   if(mobileNavEl.classList.contains('open')&&!mobileNavEl.contains(e.target)&&!hamburger.contains(e.target)){
-    mobileNavEl.classList.remove('open');
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded','false');
-    document.body.style.overflow='';
+    setNavOpen(false);
   }
 });
+
+/* iOS Safari: keep the page behind the open menu from scrolling.
+   Touches outside the menu, or inside a menu too short to scroll, are blocked. */
+var navTouchY=0;
+mobileNavEl.addEventListener('touchstart',function(e){navTouchY=e.touches[0].clientY;},{passive:true});
+document.addEventListener('touchmove',function(e){
+  if(!mobileNavEl.classList.contains('open')) return;
+  if(!mobileNavEl.contains(e.target)){e.preventDefault();return;}
+  var el=mobileNavEl;
+  var scrollable=el.scrollHeight>el.clientHeight+1;
+  var dy=e.touches[0].clientY-navTouchY;
+  var atTop=el.scrollTop<=0, atBottom=el.scrollTop+el.clientHeight>=el.scrollHeight-1;
+  if(!scrollable||(atTop&&dy>0)||(atBottom&&dy<0)) e.preventDefault();
+},{passive:false});
 </script>
 </body>
 </html>
