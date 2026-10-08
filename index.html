@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fieldstone Advisory — Independent Portfolio Management</title>
+<link rel="icon" type="image/png" href="assets/brand/fieldstone-logo-square.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -22,17 +23,32 @@ body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;lin
 a{color:inherit;text-decoration:none;}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
 a:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offset:3px;}
-.page{display:none;min-height:100vh;}.page.active{display:block;}
+.page{display:none;min-height:100vh;}.page.active{display:block;animation:fieldstoneFadeIn .38s ease;}
+@keyframes fieldstoneFadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 
 /* NAV */
 .site-header{position:sticky;top:0;z-index:50;background:rgba(251,250,247,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--stone-deep);}
-.site-nav{max-width:var(--maxw);margin:0 auto;padding:15px 28px;display:flex;align-items:center;justify-content:space-between;}
-.wordmark{font-family:'Fraunces',serif;font-weight:500;font-size:19px;color:var(--forest);cursor:pointer;letter-spacing:.01em;}
-.wordmark em{color:var(--brass);font-style:italic;font-weight:400;}
+.site-nav{width:100%;padding:15px 32px;display:flex;align-items:center;justify-content:space-between;box-sizing:border-box;}
+.wordmark{cursor:pointer;display:flex;align-items:center;}
+.wordmark img{height:32px;width:auto;display:block;}
 .nav-links{display:flex;gap:22px;list-style:none;align-items:center;}
 .nav-links a{font-size:13.5px;font-weight:500;color:var(--ink-soft);cursor:pointer;background:none;border:none;font-family:'Inter',sans-serif;padding:0;transition:color .15s;}
 .nav-links a:hover,.nav-links a.active-link{color:var(--forest);}
 .nav-links a.active-link{border-bottom:1px solid var(--forest);}
+.nav-dropdown{position:relative;}
+.nav-dropdown-trigger{display:flex;align-items:center;gap:5px;font-size:13.5px;font-weight:500;color:var(--ink-soft);cursor:pointer;background:none;border:none;font-family:'Inter',sans-serif;padding:0;transition:color .15s;}
+.nav-dropdown-trigger:hover,.nav-dropdown.open .nav-dropdown-trigger,.nav-dropdown-trigger.active-link{color:var(--forest);}
+.nav-caret{font-size:10px;color:var(--brass);line-height:1;transition:transform .18s;}
+.nav-dropdown.open .nav-caret{transform:rotate(180deg);}
+.nav-dropdown-panel{position:absolute;top:100%;left:50%;padding-top:18px;transform:translateX(-50%) translateY(-6px);opacity:0;pointer-events:none;transition:opacity .16s,transform .16s;z-index:60;}
+.nav-dropdown:hover .nav-dropdown-panel,.nav-dropdown.open .nav-dropdown-panel{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);}
+.nav-dropdown-card{min-width:280px;background:var(--paper);border:1px solid var(--stone-deep);border-top:2px solid var(--brass);border-radius:4px;box-shadow:0 14px 32px rgba(28,66,32,.14);padding:8px;}
+.nav-dropdown-item{display:block;padding:12px 14px;border-radius:3px;transition:background .15s;cursor:pointer;}
+.nav-dropdown-item:hover{background:var(--stone);}
+.nav-dropdown-item.active-link{background:var(--stone);}
+.nav-dropdown-title{display:block;font-family:'Fraunces',serif;font-size:15px;color:var(--ink);margin-bottom:3px;}
+.nav-dropdown-item.active-link .nav-dropdown-title{color:var(--forest);}
+.nav-dropdown-desc{display:block;font-size:12px;line-height:1.5;color:var(--ink-soft);}
 .nav-cta{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;background:var(--forest);color:var(--paper);padding:8px 17px;border-radius:3px;border:none;cursor:pointer;transition:background .15s;}
 .nav-cta:hover{background:var(--forest-dark);}
 /* ===== HAMBURGER ===== */
@@ -42,7 +58,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offs
 .nav-hamburger.open span:nth-child(2){opacity:0;}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 .mobile-nav{display:none;position:fixed;inset:0;top:57px;background:var(--paper);z-index:49;padding:24px 20px;border-top:1px solid var(--stone-deep);overflow-y:auto;}
-.mobile-nav.open{display:block;}
+.mobile-nav.open{display:block;animation:fieldstoneSlideDown .22s ease;}
+.mobile-nav ul li a{transition:color .15s ease,padding-left .15s ease;}
+.mobile-nav ul li a:hover,.mobile-nav ul li a:focus-visible{color:var(--forest);padding-left:4px;}
+@keyframes fieldstoneSlideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
 .mobile-nav ul{list-style:none;display:flex;flex-direction:column;gap:0;}
 .mobile-nav ul li a{display:block;font-size:17px;font-weight:500;color:var(--ink);padding:16px 0;border-bottom:1px solid var(--stone-deep);cursor:pointer;background:none;border-left:none;border-right:none;border-top:none;font-family:'Inter',sans-serif;width:100%;text-align:left;}
 .mobile-nav ul li:first-child a{border-top:1px solid var(--stone-deep);}
@@ -57,17 +76,35 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offs
 .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--brass);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
 .eyebrow::before{content:"";width:20px;height:1px;background:var(--brass);}
 .eyebrow.light{color:var(--dawn);}.eyebrow.light::before{background:var(--dawn);}
+.eyebrow-header{font-family:'Fraunces',serif;font-weight:400;text-transform:none;letter-spacing:-.01em;font-size:clamp(22px,2.8vw,30px);color:var(--ink);margin-bottom:28px;}
+.eyebrow-header::before{width:22px;height:1px;margin-top:2px;align-self:flex-start;}
+.dark-hero .eyebrow-header{font-size:clamp(28px,4vw,44px);line-height:1.18;color:var(--paper);margin-bottom:0;}
+.dark-hero .eyebrow-header::before{margin-top:8px;}
 .dark-hero{background:var(--forest);padding:80px 0 60px;}
 .dark-hero h1{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(28px,4vw,44px);line-height:1.18;color:var(--paper);margin:0 0 20px;max-width:22ch;}
+.dark-hero h1.hero-lead{font-size:clamp(19px,2.1vw,25px);font-style:italic;font-weight:400;line-height:1.6;max-width:58ch;margin-bottom:0;}
 .dark-hero p{font-size:16.5px;line-height:1.72;color:rgba(251,250,247,.85);max-width:54ch;}
 .btn-primary{font-family:'Inter',sans-serif;font-weight:600;font-size:14.5px;background:var(--forest);color:var(--paper);padding:12px 24px;border-radius:3px;border:none;cursor:pointer;transition:background .15s;display:inline-block;}
 .btn-primary:hover{background:var(--forest-dark);}
 .btn-on-forest{font-family:'Inter',sans-serif;font-weight:600;font-size:14.5px;background:var(--paper);color:var(--forest);padding:12px 26px;border-radius:3px;border:none;cursor:pointer;transition:background .15s;display:inline-block;}
 .btn-on-forest:hover{background:var(--dawn);}
 .btn-ghost{font-family:'Inter',sans-serif;font-weight:600;font-size:14.5px;color:var(--forest);background:none;border:none;border-bottom:1px solid var(--forest);padding:12px 0;cursor:pointer;}
+.btn-outline{font-family:'Inter',sans-serif;font-weight:600;font-size:14.5px;color:var(--ink);background:none;border:1px solid var(--stone-deep);border-radius:3px;padding:11px 24px;cursor:pointer;transition:border-color .15s,background .15s;}
+.btn-outline:hover{border-color:var(--brass);background:var(--stone);}
+
+/* External link notice */
+.extlink-overlay{display:none;position:fixed;inset:0;background:rgba(30,29,26,.55);z-index:200;align-items:center;justify-content:center;padding:20px;}
+.extlink-overlay.open{display:flex;animation:fieldstoneFadeIn .2s ease;}
+.extlink-modal{background:var(--paper);border:1px solid var(--stone-deep);border-top:3px solid var(--brass);border-radius:6px;max-width:420px;width:100%;padding:32px;box-shadow:0 24px 60px rgba(30,29,26,.28);}
+.extlink-mark{width:26px;height:1px;background:var(--brass);margin-bottom:18px;}
+.extlink-modal h3{font-family:'Fraunces',serif;font-weight:400;font-size:20px;color:var(--ink);margin-bottom:10px;}
+.extlink-modal p{font-size:14px;line-height:1.65;color:var(--ink-soft);margin-bottom:14px;}
+.extlink-url{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--forest);word-break:break-all;background:var(--stone);padding:10px 12px;border-radius:3px;line-height:1.5;}
+.extlink-actions{display:flex;gap:12px;margin-top:22px;}
+.extlink-actions .btn-outline,.extlink-actions .btn-primary{flex:1;text-align:center;}
 [data-reveal]{opacity:0;transform:translateY(12px);transition:opacity .45s,transform .45s;}
 [data-reveal].is-visible{opacity:1;transform:none;}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;}[data-reveal]{opacity:1;transform:none;}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}[data-reveal]{opacity:1;transform:none;}}
 
 /* FOOTER */
 footer.site{background:var(--ink);color:var(--dawn);padding:48px 0 28px;font-size:13px;}
@@ -82,25 +119,49 @@ footer.site{background:var(--ink);color:var(--dawn);padding:48px 0 28px;font-siz
 @media(max-width:760px){.footer-grid{grid-template-columns:1fr;gap:24px;}}
 
 /* ========== HOME / ABOUT (MERGED) ========== */
-.hero{padding:80px 0 60px;}
+.hero{padding:80px 0 60px;min-height:calc(100vh - 57px);display:flex;flex-direction:column;justify-content:center;box-sizing:border-box;background:var(--forest);}
+.btn-ghost-light{font-family:'Inter',sans-serif;font-weight:600;font-size:14.5px;color:var(--paper);background:none;border:none;border-bottom:1px solid var(--paper);padding:12px 0;cursor:pointer;}
+.hero-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:72px;align-items:center;}
+.hero-logo-mark{margin:22px 0 34px;}
+.hero-logo-plate{display:inline-block;background:var(--paper);padding:28px 32px;border-radius:6px;box-shadow:0 16px 40px rgba(28,66,32,.28);}
+.hero-logo-plate img{width:100%;max-width:320px;height:auto;display:block;}
+.hero-cards{display:flex;flex-direction:column;gap:18px;}
+.hero-stat-card{background:var(--stone);border:1px solid var(--stone-deep);border-top:3px solid var(--brass);border-radius:4px;padding:26px 28px;}
+.hero-stat-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--brass);margin-bottom:10px;display:block;}
+.hero-stat-card h4{font-family:'Fraunces',serif;font-size:20px;font-weight:400;color:var(--ink);margin-bottom:8px;}
+.hero-stat-card p{font-size:14px;line-height:1.6;color:var(--ink-soft);margin:0;}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:44px;}}
 h1.hero-title{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(32px,5vw,52px);line-height:1.13;letter-spacing:-.01em;max-width:20ch;margin:0 0 22px;color:var(--ink);}
 h1.hero-title em{font-style:italic;color:var(--forest);font-weight:400;}
 .hero-sub{font-size:17.5px;line-height:1.65;color:var(--ink-soft);max-width:54ch;margin:0 0 30px;}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
 .hero-frame{margin-top:48px;border-top:1px solid var(--stone-deep);padding-top:22px;display:flex;gap:32px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);letter-spacing:.02em;}
 .hero-frame span{color:var(--forest);font-weight:500;}
+.hero-fact-wrap{position:relative;}
+.hero-fact{background:none;border:none;padding:0;margin:0;font:inherit;color:inherit;cursor:pointer;border-bottom:1px dotted var(--brass);padding-bottom:2px;transition:border-color .15s;}
+.hero-fact:hover,.hero-fact-wrap.open .hero-fact{border-bottom-style:solid;border-bottom-color:var(--forest);}
+.hero-fact-pop{position:absolute;top:100%;left:0;padding-top:14px;width:300px;opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .16s,transform .16s;z-index:40;}
+.hero-fact-wrap:hover .hero-fact-pop,.hero-fact-wrap.open .hero-fact-pop{opacity:1;pointer-events:auto;transform:translateY(0);}
+.hero-fact-card{background:var(--paper);border:1px solid var(--stone-deep);border-top:2px solid var(--brass);border-radius:4px;box-shadow:0 14px 32px rgba(28,66,32,.14);padding:18px 20px;}
+.hero-fact-pop h4{font-family:'Fraunces',serif;font-weight:400;font-size:15px;color:var(--ink);margin-bottom:8px;}
+.hero-fact-pop p{font-family:'Inter',sans-serif;font-size:13px;line-height:1.62;color:var(--ink-soft);letter-spacing:0;margin:0;}
+.hero-fact-pop a{display:inline-block;margin-top:12px;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;color:var(--forest);border-bottom:1px solid var(--forest);letter-spacing:0;}
+.hero-fact-pop a:hover{color:var(--ink);border-color:var(--ink);}
+@media(max-width:480px){.hero-fact-pop{width:82vw;}}
 
 /* Services — two primary offerings */
 .services{background:var(--forest);padding:72px 0;}
 .services h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(22px,2.8vw,30px);color:var(--paper);margin-bottom:10px;}
 .services-sub{font-size:15.5px;color:rgba(251,250,247,.8);max-width:54ch;margin-bottom:44px;line-height:1.7;}
 .services-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
-.service-card{background:rgba(251,250,247,.05);border:1px solid rgba(251,250,247,.1);padding:36px 32px;}
-.service-card:hover{background:rgba(251,250,247,.08);}
+.service-card{background:rgba(251,250,247,.05);border:1px solid rgba(251,250,247,.1);padding:36px 32px;cursor:pointer;transition:background .15s,border-color .15s;}
+.service-card:hover,.service-card:focus-visible{background:rgba(251,250,247,.08);border-color:rgba(251,250,247,.22);}
 .service-num{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(251,250,247,.5);margin-bottom:18px;display:block;}
 .service-card h3{font-family:'Fraunces',serif;font-size:clamp(20px,2.2vw,26px);font-weight:400;color:var(--paper);margin-bottom:14px;line-height:1.25;}
 .service-card p{font-size:14.5px;line-height:1.72;color:rgba(251,250,247,.75);}
 .service-fee{display:inline-block;margin-top:22px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dawn);border-bottom:1px solid rgba(251,250,247,.35);padding-bottom:2px;}
+.service-more{display:block;margin-top:18px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:var(--paper);}
+.service-card:hover .service-more,.service-card:focus-visible .service-more{text-decoration:underline;}
 @media(max-width:700px){.services-grid{grid-template-columns:1fr;}}
 
 /* Gap stones */
@@ -125,6 +186,24 @@ h1.hero-title em{font-style:italic;color:var(--forest);font-weight:400;}
 .case-disclaimer{margin-top:28px;font-size:12px;color:var(--ink-soft);line-height:1.65;max-width:70ch;}
 @media(max-width:760px){.cases-grid{grid-template-columns:1fr;}.case-card{padding:22px;}}
 @media(max-width:700px){.course.c1,.course.c2,.course.c4{grid-template-columns:1fr;}}
+
+/* Seven areas — wheel layout */
+.wheel-layout{display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:center;margin-top:44px;}
+.wheel{position:relative;--wheel-size:520px;--radius:205px;--hub-size:150px;--spoke-size:138px;width:var(--wheel-size);height:var(--wheel-size);flex-shrink:0;margin:0 auto;}
+.wheel-hub{position:absolute;top:50%;left:50%;width:var(--hub-size);height:var(--hub-size);margin-left:calc(var(--hub-size) / -2);margin-top:calc(var(--hub-size) / -2);border-radius:50%;background:var(--forest);color:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.wheel-hub-num{font-family:'Fraunces',serif;font-style:italic;font-size:22px;line-height:1.25;max-width:9ch;}
+.wheel-spoke{position:absolute;top:50%;left:50%;width:var(--spoke-size);height:var(--spoke-size);margin-left:calc(var(--spoke-size) / -2);margin-top:calc(var(--spoke-size) / -2);transform:rotate(var(--angle)) translate(var(--radius)) rotate(calc(-1 * var(--angle)));border-radius:50%;background:var(--stone);border:2px solid var(--stone-deep);box-sizing:border-box;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.02em;line-height:1.35;color:var(--ink-soft);transition:background .2s ease,border-color .2s ease,color .2s ease,box-shadow .2s ease,transform .2s ease;}
+.wheel-spoke:hover{border-color:var(--brass);transform:rotate(var(--angle)) translate(var(--radius)) rotate(calc(-1 * var(--angle))) scale(1.04);}
+.wheel-spoke.active{background:var(--paper);border-color:var(--brass);color:var(--forest);font-weight:600;box-shadow:0 10px 24px rgba(28,66,32,.16);transform:rotate(var(--angle)) translate(var(--radius)) rotate(calc(-1 * var(--angle))) scale(1.06);}
+.wheel-panels{background:var(--stone);border:1px solid var(--stone-deep);border-top:2px solid var(--brass);border-radius:4px;padding:36px 40px;}
+.wheel-panel{display:none;}
+.wheel-panel.active{display:block;animation:fieldstoneFadeIn .32s ease;}
+.wheel-panel-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--brass);margin-bottom:12px;display:block;}
+.wheel-hook{font-family:'Fraunces',serif;font-style:italic;font-size:18px;color:var(--ink);line-height:1.5;margin-bottom:24px;}
+.wheel-panels .deepdive-item{max-width:64ch;}
+@media(max-width:1000px){.wheel-layout{grid-template-columns:1fr;justify-items:center;}}
+@media(max-width:600px){.wheel{--wheel-size:320px;--radius:118px;--hub-size:96px;--spoke-size:92px;}.wheel-spoke{font-size:9.5px;padding:10px;}.wheel-hub-num{font-size:15px;}.wheel-panels{padding:26px 22px;}}
+
 .stone-card{background:var(--stone);border:1px solid var(--stone-deep);}
 .stone-card:nth-child(odd){border-radius:6px 2px 6px 2px;}
 .stone-card:nth-child(even){border-radius:2px 6px 2px 6px;}
@@ -139,6 +218,36 @@ h1.hero-title em{font-style:italic;color:var(--forest);font-weight:400;}
 .deepdive-item{margin-bottom:14px;}.deepdive-item:last-child{margin-bottom:0;}
 .deepdive-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--forest);margin-bottom:3px;display:block;}
 .deepdive-text{font-size:14px;line-height:1.65;color:var(--ink-soft);margin:0;}
+
+/* Investment lifecycle — interactive pathway */
+.lifecycle-path{padding:80px 0;}
+.lifecycle-path .section-head{max-width:640px;}
+.lifecycle-path .section-head p{color:var(--ink-soft);font-size:15px;line-height:1.75;margin-top:12px;}
+.path-track{position:relative;display:flex;justify-content:space-between;gap:6px;margin:52px 0 0;}
+.path-line{position:absolute;top:19px;left:26px;right:26px;height:2px;background:var(--stone-deep);z-index:0;}
+.path-line-fill{height:100%;width:0%;background:var(--brass);transition:width .35s ease;}
+.path-node{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:10px;flex:1;background:none;border:none;cursor:pointer;padding:0 4px;font-family:'Inter',sans-serif;}
+.path-node-dot{width:38px;height:38px;border-radius:50%;background:var(--paper);border:2px solid var(--stone-deep);color:var(--ink-soft);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:500;transition:background .2s,border-color .2s,color .2s;}
+.path-node:hover .path-node-dot{border-color:var(--brass);}
+.path-node.active .path-node-dot{background:var(--forest);border-color:var(--forest);color:var(--paper);}
+.path-node-label{font-size:12px;font-weight:500;color:var(--ink-soft);text-align:center;max-width:15ch;line-height:1.3;transition:color .2s;}
+.path-node.active .path-node-label{color:var(--forest);}
+.path-panels{margin-top:40px;}
+.path-panel{display:none;background:var(--stone);border:1px solid var(--stone-deep);border-top:2px solid var(--brass);border-radius:4px;padding:36px 40px;}
+.path-panel.active{display:block;animation:fieldstoneFadeIn .32s ease;}
+.path-panel-num{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--brass);display:block;margin-bottom:10px;}
+.path-panel h3{font-family:'Fraunces',serif;font-size:clamp(20px,2.4vw,26px);font-weight:400;color:var(--ink);margin-bottom:10px;}
+.path-hook{font-family:'Fraunces',serif;font-style:italic;font-size:17px;color:var(--ink);line-height:1.5;margin-bottom:24px;max-width:60ch;}
+.path-panel .deepdive-item{max-width:64ch;margin-bottom:18px;}
+.path-next{margin-top:8px;font-family:'Inter',sans-serif;font-weight:600;font-size:13.5px;color:var(--forest);background:none;border:none;border-bottom:1px solid var(--forest);padding:0 0 2px;cursor:pointer;}
+.path-next:hover{color:var(--ink);border-color:var(--ink);}
+@media(max-width:760px){
+  .lifecycle-path{padding:56px 0;}
+  .path-track{overflow-x:auto;padding-bottom:10px;margin-top:40px;}
+  .path-node{flex:0 0 88px;}
+  .path-node-label{font-size:11px;max-width:11ch;}
+  .path-panel{padding:26px 22px;}
+}
 
 /* Who */
 .whowe{background:var(--stone);padding:72px 0;}
@@ -200,6 +309,42 @@ h1.hero-title em{font-style:italic;color:var(--forest);font-weight:400;}
 .mini-principle p{font-size:13px;line-height:1.65;color:var(--ink-soft);}
 @media(max-width:760px){.mini-principles{grid-template-columns:1fr 1fr;}}
 
+.founder-sign{font-family:'Fraunces',serif;font-style:italic;font-size:20px;color:var(--ink);margin-top:6px;}
+.founder-gallery{margin-top:56px;}
+.gallery-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px;}
+.gallery-head .eyebrow{margin-bottom:0;}
+.gallery-btns{display:flex;gap:8px;}
+.gallery-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--stone-deep);background:var(--paper);color:var(--ink);font-size:17px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .15s,background .15s,opacity .15s;}
+.gallery-btn:hover:not(:disabled){border-color:var(--forest);background:var(--stone);}
+.gallery-btn:disabled{opacity:.35;cursor:default;}
+.gallery-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;outline:none;}
+.gallery-track::-webkit-scrollbar{display:none;}
+.gallery-track:focus-visible{outline:2px solid var(--forest);outline-offset:4px;}
+.gallery-item{flex:0 0 auto;height:380px;scroll-snap-align:start;border-radius:3px;overflow:hidden;background:var(--stone);}
+.gallery-item img{display:block;height:100%;width:auto;}
+.gallery-item.wide img{width:680px;max-width:none;object-fit:cover;}
+@media(max-width:760px){.founder-gallery{margin-top:40px;}.gallery-item{height:300px;}.gallery-item.wide img{width:520px;}}
+.tech-section{padding:68px 0;background:var(--stone);}
+.tech-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px;}
+.tech-card{background:var(--paper);border:1px solid var(--stone-deep);border-top:3px solid var(--brass);border-radius:3px;padding:24px 22px;}
+.tech-mark{height:30px;display:flex;align-items:center;}
+.tech-mark img{max-height:26px;max-width:130px;width:auto;display:block;}
+.tech-mark.vanilla img{filter:invert(1);}
+.tech-mark span{font-family:'Fraunces',serif;font-size:21px;line-height:1.1;color:var(--ink);}
+.tech-role{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--brass);margin:12px 0 8px;}
+.tech-card p{font-size:14px;line-height:1.65;color:var(--ink-soft);}
+@media(max-width:960px){.tech-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.tech-section{padding:48px 0;}.tech-grid{grid-template-columns:1fr;}}
+.fee-schedule{padding:64px 0;border-top:1px solid var(--stone-deep);}
+.fee-table{width:100%;max-width:640px;border-collapse:collapse;background:var(--paper);border:1px solid var(--stone-deep);margin:4px 0 18px;}
+.fee-table th{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--brass);text-align:left;padding:12px 20px;background:var(--stone);border-bottom:1px solid var(--stone-deep);}
+.fee-table td{padding:14px 20px;border-bottom:1px solid var(--stone-deep);font-size:15px;color:var(--ink);}
+.fee-table tr:last-child td{border-bottom:none;}
+.fee-table td.fee-rate{font-family:'Fraunces',serif;font-size:21px;color:var(--forest);white-space:nowrap;}
+.fee-table td.fee-mo{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-soft);white-space:nowrap;}
+.fee-fine{font-size:12.5px;line-height:1.7;color:var(--ink-soft);max-width:64ch;}
+.fee-fine a{color:var(--forest);border-bottom:1px solid var(--forest);}
+@media(max-width:760px){.fee-schedule{padding:48px 0;}.fee-table th,.fee-table td{padding:12px 14px;}.fee-table td.fee-rate{font-size:18px;}.fee-table td.fee-mo{font-size:12px;}}
 .process-download{background:var(--forest);padding:64px 0;}
 .process-download .wrap{display:grid;grid-template-columns:1fr auto;gap:44px;align-items:center;}
 .process-download h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(20px,2.6vw,28px);color:var(--paper);margin-bottom:10px;}
@@ -211,25 +356,47 @@ h1.hero-title em{font-style:italic;color:var(--forest);font-weight:400;}
 .pdf-sub{font-size:11.5px;color:rgba(251,250,247,.32);margin-top:8px;}
 @media(max-width:800px){.process-download .wrap{grid-template-columns:1fr;gap:24px;}.pdf-gate{flex-direction:column;}.pdf-input{width:100%;}}
 
+/* Planning — scope & pricing */
+.planning-scope{padding:72px 0 0;}
+.planning-scope .section-head{max-width:680px;}
+#page-about .planning-scope{padding:76px 0;}
+#page-about .planning-scope .section-head{max-width:640px;margin:0 auto;}
+.planning-scope .section-head p{color:var(--ink-soft);font-size:15.5px;line-height:1.75;margin-top:14px;}
+.scope-complexity{margin:28px 0 40px;}
+.scope-complexity-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:12px;display:block;max-width:56ch;line-height:1.5;}
+.scope-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--stone-deep);border-left:1px solid var(--stone-deep);margin-bottom:24px;}
+.scope-fact{padding:22px 26px;border-right:1px solid var(--stone-deep);border-bottom:1px solid var(--stone-deep);}
+.scope-fact-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--brass);margin-bottom:8px;display:block;}
+.scope-fact p{font-size:14.5px;line-height:1.6;color:var(--ink);margin:0;}
+.scope-note{font-size:14px;line-height:1.7;color:var(--ink-soft);max-width:64ch;}
+.scope-renewal{margin-top:8px;}
+.scope-renewal-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;}
+@media(max-width:760px){.scope-facts{grid-template-columns:1fr;border-left:none;}.scope-fact{border-left:none;}.scope-renewal-grid{grid-template-columns:1fr;}}
+
 /* ========== INSIGHTS ========== */
-.insights-pieces{padding:72px 0;}
-.insights-pieces h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(22px,2.8vw,30px);color:var(--ink);margin-bottom:36px;}
-.pieces-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-.piece-card{border:1px solid var(--stone-deep);padding:28px;display:flex;flex-direction:column;background:var(--paper);}
-.piece-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--forest);margin-bottom:12px;}
-.piece-card h3{font-family:'Fraunces',serif;font-size:20px;font-weight:400;color:var(--ink);margin-bottom:10px;line-height:1.3;}
-.piece-card p{font-size:14px;line-height:1.7;color:var(--ink-soft);flex:1;}
-.piece-meta{margin-top:18px;padding-top:14px;border-top:1px solid var(--stone-deep);display:flex;justify-content:space-between;align-items:center;}
-.piece-date{font-size:12px;color:var(--ink-soft);}
-.piece-link{font-size:12px;font-weight:600;color:var(--forest);border-bottom:1px solid var(--forest);padding-bottom:1px;}
-.piece-coming{opacity:.5;position:relative;}
-.piece-coming::after{content:'Coming soon';position:absolute;top:12px;right:12px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);background:var(--stone);padding:3px 7px;border-radius:2px;}
-.subscribe-card{background:var(--stone);border:1px solid var(--stone-deep);padding:28px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
-.subscribe-card p{font-size:14px;color:var(--ink-soft);margin-bottom:16px;line-height:1.6;}
-.subscribe-row{display:flex;gap:7px;width:100%;max-width:300px;}
-.sub-input{flex:1;padding:10px 12px;font-family:'Inter',sans-serif;font-size:13.5px;border:1px solid var(--stone-deep);border-radius:3px;outline:none;background:var(--paper);}
+.signup-section{padding:84px 0;}
+.signup-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;}
+.signup-copy h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(28px,3.6vw,40px);line-height:1.2;color:var(--ink);margin:14px 0 16px;}
+.signup-copy > p{font-size:16px;line-height:1.7;color:var(--ink-soft);max-width:48ch;margin-bottom:26px;}
+.signup-list{list-style:none;border-top:1px solid var(--stone-deep);max-width:52ch;}
+.signup-list li{padding:14px 0;border-bottom:1px solid var(--stone-deep);font-size:14.5px;line-height:1.55;color:var(--ink-soft);}
+.signup-list strong{display:block;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--forest);margin-bottom:3px;}
+.signup-card{position:relative;background:var(--stone);border:1px solid var(--stone-deep);border-top:3px solid var(--brass);border-radius:4px;padding:36px 34px;}
+.signup-card h3{font-family:'Fraunces',serif;font-weight:400;font-size:23px;line-height:1.3;color:var(--ink);margin-bottom:8px;}
+.signup-lede{font-size:14px;line-height:1.65;color:var(--ink-soft);margin-bottom:22px;}
+.signup-form label{display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;}
+.sub-input{width:100%;padding:13px 14px;font-family:'Inter',sans-serif;font-size:15px;border:1px solid var(--stone-deep);border-radius:3px;outline:none;background:var(--paper);color:var(--ink);}
 .sub-input:focus{border-color:var(--forest);}
-@media(max-width:760px){.pieces-grid{grid-template-columns:1fr;}}
+.signup-form .btn-primary{width:100%;margin-top:12px;padding:13px 16px;}
+.signup-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+.signup-fine{font-size:12px;line-height:1.6;color:var(--ink-soft);margin-top:14px;}
+.signup-status{font-size:14px;line-height:1.6;color:var(--ink);margin-top:14px;}
+.signup-status:empty{display:none;}
+.signup-done{display:none;}
+.signup-card.done .signup-form,.signup-card.done .signup-lede{display:none;}
+.signup-card.done .signup-done{display:block;}
+.signup-done p{font-size:14.5px;line-height:1.65;color:var(--ink-soft);}
+@media(max-width:860px){.signup-grid{grid-template-columns:1fr;gap:36px;}}
 .resources-section{background:var(--stone);padding:72px 0;}
 .resources-section h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(22px,2.8vw,30px);color:var(--ink);margin-bottom:36px;}
 .resources-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
@@ -242,19 +409,15 @@ h1.hero-title em{font-style:italic;color:var(--forest);font-weight:400;}
 @media(max-width:760px){.resources-grid{grid-template-columns:1fr 1fr;}}
 
 /* ========== RESOURCES PAGE ========== */
-.ticker-section{padding:52px 0;border-bottom:1px solid var(--stone-deep);overflow:hidden;}
+.ticker-section{padding:52px 0;border-bottom:1px solid var(--stone-deep);}
 .ticker-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);text-align:center;margin-bottom:28px;}
-.ticker-wrap{position:relative;width:100%;overflow:hidden;}
-.ticker-wrap::before,.ticker-wrap::after{content:'';position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none;}
-.ticker-wrap::before{left:0;background:linear-gradient(to right,var(--paper),transparent);}
-.ticker-wrap::after{right:0;background:linear-gradient(to left,var(--paper),transparent);}
-.ticker-track{display:flex;gap:52px;animation:ticker 18s linear infinite;width:max-content;align-items:center;}
-.ticker-track:hover{animation-play-state:paused;}
+.ticker-wrap{position:relative;width:100%;}
+.ticker-track{display:flex;gap:52px;align-items:center;justify-content:center;flex-wrap:wrap;}
 .logo-chip{display:flex;flex-direction:column;align-items:center;gap:7px;min-width:96px;}
-.logo-icon{width:50px;height:50px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:10.5px;letter-spacing:.05em;border:1px solid var(--stone-deep);font-family:'IBM Plex Mono',monospace;}
+.logo-icon{width:50px;height:50px;border-radius:9px;display:flex;align-items:center;justify-content:center;border:1px solid var(--stone-deep);background:var(--stone);padding:9px;}
+.logo-icon img{max-width:100%;max-height:100%;object-fit:contain;}
+.logo-icon.logo-vanilla img{filter:invert(1);}
 .logo-name{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
-.logo-altruist,.logo-schwab,.logo-emoney,.logo-vanilla{background:var(--stone);color:var(--forest);border-color:var(--stone-deep);}
-@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 .network-section{padding:72px 0;}
 .network-section h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(22px,2.8vw,30px);color:var(--ink);margin-bottom:10px;}
 .network-intro{font-size:15px;line-height:1.75;color:var(--ink-soft);max-width:54ch;margin-bottom:36px;}
@@ -390,10 +553,8 @@ img,video{max-width:100%;height:auto;}
   .pdf-input{width:100%;}
 
   /* INSIGHTS */
-  .insights-pieces{padding:52px 0;}
-  .pieces-grid{grid-template-columns:1fr;}
-  .subscribe-row{flex-direction:column;}
-  .sub-input,.subscribe-row .btn-primary{width:100%;text-align:center;}
+  .signup-section{padding:56px 0;}
+  .signup-card{padding:28px 22px;}
   .resources-section{padding:52px 0;}
   .resources-grid{grid-template-columns:1fr;}
 
@@ -439,10 +600,25 @@ img,video{max-width:100%;height:auto;}
 
 <header class="site-header">
   <nav class="site-nav">
-    <span class="wordmark" onclick="showPage('home')">Fieldstone <em>Advisory</em></span>
+    <span class="wordmark" onclick="showPage('home')"><img src="assets/brand/fieldstone-logo-horizontal.png" alt="Fieldstone Advisory"></span>
     <ul class="nav-links">
-      <li><a onclick="showPage('home')" id="nav-home">About</a></li>
-      <li><a onclick="showPage('process')" id="nav-process">Process</a></li>
+      <li><a onclick="showPage('home')" id="nav-home">Home</a></li>
+      <li><a onclick="showPage('about')" id="nav-about">About</a></li>
+      <li class="nav-dropdown">
+        <button type="button" class="nav-dropdown-trigger" id="nav-services" aria-expanded="false" aria-haspopup="true">Services<span class="nav-caret" aria-hidden="true">⌄</span></button>
+        <div class="nav-dropdown-panel" role="menu">
+          <div class="nav-dropdown-card">
+            <a onclick="showPage('portfolio')" id="nav-portfolio" class="nav-dropdown-item" role="menuitem">
+              <span class="nav-dropdown-title">Portfolio Management</span>
+              <span class="nav-dropdown-desc">Discretionary, tax-aware investment management, built and managed on your behalf.</span>
+            </a>
+            <a onclick="showPage('planning')" id="nav-planning" class="nav-dropdown-item" role="menuitem">
+              <span class="nav-dropdown-title">Planning</span>
+              <span class="nav-dropdown-desc">A full written financial plan, delivered as a clear, actionable document.</span>
+            </a>
+          </div>
+        </div>
+      </li>
       <li><a onclick="showPage('insights')" id="nav-insights">Insights</a></li>
       <li><a onclick="showPage('resources')" id="nav-resources">Partners</a></li>
       <li><a onclick="showPage('login')" id="nav-login">Client Login</a></li>
@@ -457,8 +633,10 @@ img,video{max-width:100%;height:auto;}
 <!-- MOBILE NAV DRAWER -->
 <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
   <ul>
-    <li><a onclick="mobileNav('home')">About</a></li>
-    <li><a onclick="mobileNav('process')">Process</a></li>
+    <li><a onclick="mobileNav('home')">Home</a></li>
+    <li><a onclick="mobileNav('about')">About</a></li>
+    <li><a onclick="mobileNav('portfolio')">Portfolio Management</a></li>
+    <li><a onclick="mobileNav('planning')">Planning</a></li>
     <li><a onclick="mobileNav('insights')">Insights</a></li>
     <li><a onclick="mobileNav('resources')">Partners</a></li>
     <li><a onclick="mobileNav('login')">Client Login</a></li>
@@ -466,21 +644,107 @@ img,video{max-width:100%;height:auto;}
   </ul>
 </nav>
 
-<!-- ===================== HOME / ABOUT ===================== -->
+<!-- ===================== ABOUT ===================== -->
+<div class="page" id="page-about">
+<main>
+
+  <!-- MISSION -->
+  <section class="planning-scope">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">Mission</div>
+        <h2>Why we do this</h2>
+        <p>We help individuals, families, and organizations make financial decisions that match their goals and values. Technology informs our work. Every recommendation still rests on experience, sound judgment, and human discernment.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY FIELDSTONE -->
+  <section class="planning-scope" style="border-top:1px solid var(--stone-deep)">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">Our name</div>
+        <h2>Why Fieldstone?</h2>
+        <p>I grew up on a street called Fieldstone Drive in Southwest Austin. I always liked the name &mdash; and I feel that it fits the &ldquo;why&rdquo; behind what I do day to day. I hope to always be a guiding force for people in my community to build a strong financial foundation and live on purpose and generously as a result.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER -->
+  <section class="planning-scope" style="border-top:1px solid var(--stone-deep)">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">A note from the founder</div>
+        <h2>Hi, thanks for visiting.</h2>
+        <p>My name is Noah Remmert. I&rsquo;m an Austin native and the founder of Fieldstone Advisory. After studying Finance and Portfolio management at LSU, I returned to Texas to join a local RIA and serve clients ranging from young professionals and emerging wealth to ultra-high net worth founders and families.</p>
+        <p>I&rsquo;ve founded this practice to serve as an independent platform for myself, and in the future, other advisors to provide impactful financial guidance and resources to members of my community at a fair price.</p>
+        <p>When not working on the practice, I like to spend time with my wife, Sydney, and my pup, Addie. We attend Red Rocks Church in Austin. We love to travel and see live music. I&rsquo;m always up for a round of golf. I am an aviation enthusiast and aspiring private pilot.</p>
+        <p>Whether you are contemplating uploading your entire financial life to an AI model, facing a challenging life transition, or just hoping to learn more about financial planning &amp; investing, I am happy to connect with you.</p>
+        <p class="founder-sign">&mdash; Noah</p>
+      </div>
+      <div class="founder-gallery" data-reveal>
+        <div class="gallery-head">
+          <div class="eyebrow">Beyond the office</div>
+          <div class="gallery-btns">
+            <button class="gallery-btn" type="button" id="gallery-prev" aria-label="Previous photos">&larr;</button>
+            <button class="gallery-btn" type="button" id="gallery-next" aria-label="Next photos">&rarr;</button>
+          </div>
+        </div>
+        <div class="gallery-track" id="gallery-track" tabindex="0" role="region" aria-label="Photos of Noah and life outside work">
+          <figure class="gallery-item"><img src="assets/photos/founder-01.jpg" width="900" height="1200" alt="Noah Remmert smiling on a rooftop at sunset"></figure>
+          <figure class="gallery-item"><img src="assets/photos/founder-02.jpg" width="1600" height="1200" alt="Noah with four friends on a golf course in the desert" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="assets/photos/founder-03.jpg" width="1200" height="1600" alt="Rocky shoreline of a lake with forested hills in the distance" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="assets/photos/founder-04.jpg" width="1200" height="1600" alt="Hotel Monteleone sign glowing at dusk through wrought-iron balconies" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="assets/photos/founder-05.jpg" width="1600" height="1200" alt="Rocky coastline at golden hour with mountains across the bay" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="assets/photos/founder-06.jpg" width="1600" height="1067" alt="An outdoor wedding ceremony in front of a white house" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="assets/photos/founder-07.jpg" width="1600" height="1200" alt="Rugged desert mountains under a cloudy sky" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="assets/photos/founder-08.jpg" width="1200" height="1600" alt="View over the wing of a red biplane above the water" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="assets/photos/founder-09.jpg" width="1600" height="1200" alt="Tiger Stadium lit up at night after a game" loading="lazy"></figure>
+          <figure class="gallery-item wide"><img src="assets/photos/founder-10.jpg" width="1600" height="379" alt="Desert sunset panorama over a golf course and mountains" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="assets/photos/founder-11.jpg" width="1600" height="1066" alt="Friends walking hand in hand across a footbridge in spring" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="assets/photos/founder-12.jpg" width="1200" height="1600" alt="Addie, an Australian shepherd with blue eyes, smiling on a sunny beach" loading="lazy"></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col"><span class="footer-word">Fieldstone Advisory</span><p>An independent, fee-only portfolio management firm based in Austin, Texas.</p><div class="footer-addr">5209 Burnet Rd, 2nd Floor<br>Austin, TX 78756</div></div>
+      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">Home</a><a onclick="showPage('about')" style="cursor:pointer">About</a><a onclick="showPage('portfolio')" style="cursor:pointer">Portfolio Management</a><a onclick="showPage('planning')" style="cursor:pointer">Planning</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Partners</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
+      <div class="footer-col"><h4>Disclosures</h4><a href="assets/disclosures/fieldstone-form-adv-part-2a-2b.pdf" target="_blank" rel="noopener">Form ADV Part 2A &amp; 2B</a><a href="assets/disclosures/fieldstone-privacy-policy.pdf" target="_blank" rel="noopener">Privacy Policy</a><a href="mailto:noah@fieldstone-advisory.com">noah@fieldstone-advisory.com</a></div>
+    </div>
+    <div class="footer-legal"><p>Fieldstone Advisory, LLC is a registered investment adviser in the State of Texas. Registration does not imply a certain level of skill or training. This website is for informational purposes only and does not constitute investment, legal, or tax advice. Actual timelines and steps may vary based on individual circumstances.</p><p>&copy; 2025 Fieldstone Advisory, LLC. All rights reserved.</p></div>
+  </div>
+</footer>
+</div>
+
+<!-- ===================== WHY FIELDSTONE ===================== -->
 <div class="page active" id="page-home">
 <main>
 
   <section class="hero">
-    <div class="wrap">
-      <div class="eyebrow">Independent Portfolio Management &middot; Austin, TX</div>
-      <p class="hero-sub">Fieldstone Advisory is an independent wealth management firm that exists to help individuals, families, organizations, and communities steward resources and make better financial decisions – through disciplined investment management and clear, written financial planning.</p>
-      <div class="hero-actions">
-        <button class="btn-primary" onclick="showPage('contact')">Start a Conversation</button>
-        <button class="btn-ghost" onclick="document.getElementById('services-anchor').scrollIntoView({behavior:'smooth'})">See our services &darr;</button>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow light">Independent Wealth Advisory &middot; Austin, TX</div>
+        <h1 class="hero-logo-mark"><span class="hero-logo-plate"><img src="assets/brand/fieldstone-logo-square.png" alt="Fieldstone Advisory"></span></h1>
+        <div class="hero-actions">
+          <button class="btn-on-forest" onclick="showPage('contact')">Start a Conversation</button>
+          <button class="btn-ghost-light" onclick="document.getElementById('services-anchor').scrollIntoView({behavior:'smooth'})">See our services &darr;</button>
+        </div>
       </div>
-      <div class="hero-frame">
-        <div>Fee-only &middot; <span>No commissions</span></div>
-        <div>Independent RIA &middot; <span>Texas</span></div>
+      <div class="hero-cards">
+        <div class="hero-stat-card">
+          <span class="hero-stat-label">Fee-only</span>
+          <h4>No commissions, ever.</h4>
+          <p>Paid directly by clients — never by product providers, kickbacks, or sales incentives.</p>
+        </div>
+        <div class="hero-stat-card">
+          <span class="hero-stat-label">Independent</span>
+          <h4>Privately owned and operated.</h4>
+          <p>Structured to act in your interest, not a parent company's. Based in Austin, Texas.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -489,21 +753,22 @@ img,video{max-width:100%;height:auto;}
   <section class="services" id="services-anchor">
     <div class="wrap">
       <div class="eyebrow light">What we offer</div>
-      <h2>Two services. Clearly priced. No overlap.</h2>
+      <h2>Two core competencies</h2>
       <p class="services-sub">Sound asset management and thoughtful financial planning are the core of what we do. We keep them separate on purpose — so you always know what you're paying for and why.</p>
       <div class="services-grid">
-        <div class="service-card">
+        <div class="service-card" onclick="showPage('portfolio')" role="link" tabindex="0" onkeydown="if(event.key==='Enter')showPage('portfolio')">
           <span class="service-num">Service 01</span>
           <h3>Discretionary Portfolio Management</h3>
           <p>Disciplined, discretionary management of public equity, fixed income, and alternative investments. We build and manage your portfolio directly — handling all investment decisions, rebalancing, and tax-conscious execution on your behalf.</p>
           <span class="service-fee">Recurring AUM-based fee</span>
-          <p style="font-size:12px;color:rgba(251,250,247,.5);margin-top:16px;line-height:1.55;">Portfolio management decisions may have tax consequences. Fieldstone does not provide tax advice; consult your tax advisor regarding your specific situation.</p>
+          <span class="service-more">Learn more &rarr;</span>
         </div>
-        <div class="service-card">
+        <div class="service-card" onclick="showPage('planning')" role="link" tabindex="0" onkeydown="if(event.key==='Enter')showPage('planning')">
           <span class="service-num">Service 02</span>
           <h3>Written Financial Plan</h3>
           <p>A written financial plan delivered as a standalone engagement. We analyze your full financial picture — cash flow, tax situation, goals, risk, estate, and insurance — and deliver a clear, actionable document you can implement with or without us. Scoped and priced as a flat project fee before any work begins.</p>
-          <span class="service-fee">Flat project-based fee</span>
+          <span class="service-fee">Flat project-based fee · $500 minimum</span>
+          <span class="service-more">Learn more &rarr;</span>
         </div>
       </div>
     </div>
@@ -517,97 +782,59 @@ img,video{max-width:100%;height:auto;}
         <h2>Seven areas. One integrated picture.</h2>
         <p>Financial wellbeing isn't one problem — it's seven that interact. We work across all of them so nothing is optimized in isolation.</p>
       </div>
-      <div class="wall">
-        <div class="course c1">
-          <div class="stone-card" data-open="false" data-reveal>
-            <button class="stone-toggle" aria-expanded="false">
-              <div class="stone-toggle-text">
-                <span class="stone-label">Fundamentals of Finance</span>
-                <p class="stone-hook">Most financial decisions fail not from complexity, but from gaps in the basics.</p>
-              </div><span class="stone-icon">+</span>
-            </button>
-            <div class="stone-panel"><div class="stone-panel-inner">
-              <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Cash flow, net worth, debt structure, and savings rate — the foundational layer that every other decision sits on. We make sure it's solid before building anything on top of it.</p></div>
-              <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">Sophisticated investment strategies can't compensate for a leaking budget or a balance sheet you don't understand. We start here.</p></div>
-            </div></div>
-          </div>
-          <div class="stone-card" data-open="false" data-reveal>
-            <button class="stone-toggle" aria-expanded="false">
-              <div class="stone-toggle-text">
-                <span class="stone-label">Asset &amp; Portfolio Management</span>
-                <p class="stone-hook">A portfolio should be built for your life — not assembled from whatever was available at the time.</p>
-              </div><span class="stone-icon">+</span>
-            </button>
-            <div class="stone-panel"><div class="stone-panel-inner">
-              <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Discretionary management of public equity, fixed income, and alternatives — constructed around your goals, time horizon, values, and risk tolerance using a Total Portfolio Approach.</p></div>
-              <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">Most people's portfolios reflect a series of disconnected decisions. We build from a complete picture and manage it as one coherent strategy.</p></div>
-            </div></div>
-          </div>
+      <div class="wheel-layout">
+        <div class="wheel">
+          <div class="wheel-hub"><span class="wheel-hub-num">Your Plan</span></div>
+          <button class="wheel-spoke active" type="button" style="--angle:-90deg" data-panel="0">Fundamentals of Finance</button>
+          <button class="wheel-spoke" type="button" style="--angle:-38.57deg" data-panel="1">Asset &amp; Portfolio Management</button>
+          <button class="wheel-spoke" type="button" style="--angle:12.86deg" data-panel="2">Tax</button>
+          <button class="wheel-spoke" type="button" style="--angle:64.29deg" data-panel="3">Financial Independence &amp; Retirement</button>
+          <button class="wheel-spoke" type="button" style="--angle:115.71deg" data-panel="4">Estate &amp; Legacy</button>
+          <button class="wheel-spoke" type="button" style="--angle:167.14deg" data-panel="5">Risk &amp; Insurance</button>
+          <button class="wheel-spoke" type="button" style="--angle:219.14deg" data-panel="6">Behavioral Finance</button>
         </div>
-        <div class="course c2">
-          <div class="stone-card" data-open="false" data-reveal>
-            <button class="stone-toggle" aria-expanded="false">
-              <div class="stone-toggle-text">
-                <span class="stone-label">Tax</span>
-                <p class="stone-hook">Filing correctly and paying the least you legally owe are two different jobs. Most people only get the first one.</p>
-              </div><span class="stone-icon">+</span>
-            </button>
-            <div class="stone-panel"><div class="stone-panel-inner">
-              <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Tax-conscious portfolio construction, income timing, account location strategy, and coordination with your CPA around events that have planning implications. Fieldstone does not provide tax advice — we provide context and coordinate with your tax advisor.</p></div>
-              <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">The gap between a good tax return and a good tax strategy compounds over decades. We help close it.</p></div>
-            </div></div>
+        <div class="wheel-panels">
+          <div class="wheel-panel active" id="wheel-panel-0">
+            <span class="wheel-panel-label">Fundamentals of Finance</span>
+            <p class="wheel-hook">Most financial decisions fail not from complexity, but from gaps in the basics.</p>
+            <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Cash flow, net worth, debt structure, and savings rate — the foundational layer that every other decision sits on. We make sure it's solid before building anything on top of it.</p></div>
+            <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">Sophisticated investment strategies can't compensate for a leaking budget or a balance sheet you don't understand. We start here.</p></div>
           </div>
-          <div class="stone-card" data-open="false" data-reveal>
-            <button class="stone-toggle" aria-expanded="false">
-              <div class="stone-toggle-text">
-                <span class="stone-label">Financial Independence &amp; Retirement</span>
-                <p class="stone-hook">The goal isn't just to retire — it's to have options, on your timeline, without running out.</p>
-              </div><span class="stone-icon">+</span>
-            </button>
-            <div class="stone-panel"><div class="stone-panel-inner">
-              <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Retirement projections, Social Security timing, distribution strategy, withdrawal sequencing, and the question of whether the number you're working toward is the right number.</p></div>
-              <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">Accumulation and distribution are different disciplines. We plan for both from the beginning so the transition between them isn't a surprise.</p></div>
-            </div></div>
+          <div class="wheel-panel" id="wheel-panel-1">
+            <span class="wheel-panel-label">Asset &amp; Portfolio Management</span>
+            <p class="wheel-hook">Helping clients understand risk &amp; return to build an investment portfolio suited to their individual needs.</p>
+            <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Discretionary management of public equity, fixed income, and alternatives — constructed around your goals, time horizon, values, and risk tolerance using a Total Portfolio Approach.</p></div>
+            <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">Most people's portfolios reflect a series of disconnected decisions. We build from a complete picture and manage it as one coherent strategy.</p></div>
           </div>
-        </div>
-        <div class="course c4">
-          <div class="stone-card" data-open="false" data-reveal>
-            <button class="stone-toggle" aria-expanded="false">
-              <div class="stone-toggle-text">
-                <span class="stone-label">Estate &amp; Legacy</span>
-                <p class="stone-hook">If people depend on you, an outdated plan — or no plan — is a risk you can fix.</p>
-              </div><span class="stone-icon">+</span>
-            </button>
-            <div class="stone-panel"><div class="stone-panel-inner">
-              <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Estate plan review, beneficiary audit, trust coordination, and working alongside an estate attorney to make sure your legal documents, account titling, and financial plan all point in the same direction.</p></div>
-              <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">Beneficiary designations override your will regardless of what it says. Documents drafted before a marriage, a child, or a business sale may not reflect your current life. We help you stay current.</p></div>
-            </div></div>
+          <div class="wheel-panel" id="wheel-panel-2">
+            <span class="wheel-panel-label">Tax</span>
+            <p class="wheel-hook">Filing correctly and paying the least you legally owe are two different jobs. Most people only get the first one.</p>
+            <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Tax-conscious portfolio construction, income timing, account location strategy, and coordination with your CPA around events that have planning implications. Fieldstone does not provide tax advice — we provide context and coordinate with your tax advisor.</p></div>
+            <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">The gap between a good tax return and a good tax strategy compounds over decades. We help close it.</p></div>
           </div>
-          <div class="stone-card" data-open="false" data-reveal>
-            <button class="stone-toggle" aria-expanded="false">
-              <div class="stone-toggle-text">
-                <span class="stone-label">Risk &amp; Insurance</span>
-                <p class="stone-hook">As a fee-only firm, we don't sell insurance — so our analysis isn't shaped by what pays a commission.</p>
-              </div><span class="stone-icon">+</span>
-            </button>
-            <div class="stone-panel"><div class="stone-panel-inner">
-              <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Coverage adequacy review across life, disability, long-term care, and property — analyzed against your actual balance sheet and financial plan, not against a sales quota.</p></div>
-              <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">Most people have some coverage. Whether it's the right kind, in the right amount, structured correctly — that's usually never been verified by someone without a product to sell.</p></div>
-            </div></div>
+          <div class="wheel-panel" id="wheel-panel-3">
+            <span class="wheel-panel-label">Financial Independence &amp; Retirement</span>
+            <p class="wheel-hook">The goal isn't just to retire — it's to have options, on your timeline, without running out.</p>
+            <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Retirement projections, Social Security timing, distribution strategy, withdrawal sequencing, and the question of whether the number you're working toward is the right number.</p></div>
+            <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">Accumulation and distribution are different disciplines. We plan for both from the beginning so the transition between them isn't a surprise.</p></div>
           </div>
-        </div>
-        <div class="course c3">
-          <div class="stone-card" data-open="false" data-reveal>
-            <button class="stone-toggle" aria-expanded="false">
-              <div class="stone-toggle-text">
-                <span class="stone-label">Behavioral Finance</span>
-                <p class="stone-hook">The biggest risk to a financial plan isn't the market. It's the decisions people make in response to it.</p>
-              </div><span class="stone-icon">+</span>
-            </button>
-            <div class="stone-panel"><div class="stone-panel-inner">
-              <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Understanding how cognitive biases, emotional responses, and life transitions affect financial decision-making — and building processes that account for human nature rather than assuming it away.</p></div>
-              <div class="deepdive-item"><span class="deepdive-label">Our advantage</span><p class="deepdive-text">Modern financial technology gives us better data and better models. But the application of that data to the unique complexity of a human life — goals that shift, emotions that spike, relationships that change — still requires judgment. That's where we add the most value.</p></div>
-            </div></div>
+          <div class="wheel-panel" id="wheel-panel-4">
+            <span class="wheel-panel-label">Estate &amp; Legacy</span>
+            <p class="wheel-hook">If people depend on you, an outdated plan — or no plan — is a risk you can fix.</p>
+            <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Estate plan review, beneficiary audit, trust coordination, and working alongside an estate attorney to make sure your legal documents, account titling, and financial plan all point in the same direction.</p></div>
+            <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">Beneficiary designations override your will regardless of what it says. Documents drafted before a marriage, a child, or a business sale may not reflect your current life. We help you stay current.</p></div>
+          </div>
+          <div class="wheel-panel" id="wheel-panel-5">
+            <span class="wheel-panel-label">Risk &amp; Insurance</span>
+            <p class="wheel-hook">As a fee-only firm, we don't sell insurance — so our analysis isn't shaped by what pays a commission.</p>
+            <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Coverage adequacy review across life, disability, long-term care, and property — analyzed against your actual balance sheet and financial plan, not against a sales quota.</p></div>
+            <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">Most people have some coverage. Whether it's the right kind, in the right amount, structured correctly — that's usually never been verified by someone without a product to sell.</p></div>
+          </div>
+          <div class="wheel-panel" id="wheel-panel-6">
+            <span class="wheel-panel-label">Behavioral Finance</span>
+            <p class="wheel-hook">The biggest risk to a financial plan isn't the market. It's the decisions people make in response to it.</p>
+            <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Understanding how cognitive biases, emotional responses, and life transitions affect financial decision-making — and building processes that account for human nature rather than assuming it away.</p></div>
+            <div class="deepdive-item"><span class="deepdive-label">Our advantage</span><p class="deepdive-text">Modern financial technology gives us better data and better models. But the application of that data to the unique complexity of a human life — goals that shift, emotions that spike, relationships that change — still requires judgment. That's where we add the most value.</p></div>
           </div>
         </div>
       </div>
@@ -626,17 +853,18 @@ img,video{max-width:100%;height:auto;}
       </div>
       <div class="footer-col">
         <h4>Site</h4>
-        <a onclick="showPage('home')" style="cursor:pointer">About</a>
-        <a onclick="showPage('process')" style="cursor:pointer">Process</a>
+        <a onclick="showPage('home')" style="cursor:pointer">Home</a>
+        <a onclick="showPage('about')" style="cursor:pointer">About</a>
+        <a onclick="showPage('portfolio')" style="cursor:pointer">Portfolio Management</a>
+        <a onclick="showPage('planning')" style="cursor:pointer">Planning</a>
         <a onclick="showPage('insights')" style="cursor:pointer">Insights</a>
         <a onclick="showPage('resources')" style="cursor:pointer">Partners</a>
         <a onclick="showPage('contact')" style="cursor:pointer">Contact</a>
       </div>
       <div class="footer-col">
         <h4>Disclosures</h4>
-        <a href="#">Form ADV Part 2A</a>
-        <a href="#">Form CRS</a>
-        <a href="#">Privacy Policy</a>
+        <a href="assets/disclosures/fieldstone-form-adv-part-2a-2b.pdf" target="_blank" rel="noopener">Form ADV Part 2A &amp; 2B</a>
+        <a href="assets/disclosures/fieldstone-privacy-policy.pdf" target="_blank" rel="noopener">Privacy Policy</a>
         <a href="mailto:noah@fieldstone-advisory.com">noah@fieldstone-advisory.com</a>
       </div>
     </div>
@@ -648,112 +876,104 @@ img,video{max-width:100%;height:auto;}
 </footer>
 </div>
 
-<!-- ===================== PROCESS ===================== -->
-<div class="page" id="page-process">
+<!-- ===================== PORTFOLIO MANAGEMENT ===================== -->
+<div class="page" id="page-portfolio">
 <main>
   <div class="dark-hero">
     <div class="wrap">
-      <div class="eyebrow light">Our process</div>
-      <h1>A repeatable process. Technology-enabled. Built for the long term.</h1>
-      <p>Every client engagement follows the same disciplined sequence — so you always know what's happening, what comes next, and what to expect from us.</p>
+      <div class="eyebrow light">Portfolio management</div>
+      <h1>A repeatable process for disciplined, tax-aware portfolio management.</h1>
     </div>
   </div>
 
-  <!-- PROCESS PHILOSOPHY — three pillars -->
-  <section class="process-intro">
+  <!-- INVESTMENT LIFECYCLE -->
+  <section class="lifecycle-path" id="lifecycle">
     <div class="wrap">
-      <div class="process-intro-sticky">
-        <div class="eyebrow">How we approach every engagement</div>
-        <h2>Consistent evaluation. Efficient onboarding. Long-term value.</h2>
-        <p>The Fieldstone process isn't ad hoc. Every client goes through the same structured sequence — from initial fit assessment through ongoing partnership — so nothing important gets skipped and nothing falls through the cracks.</p>
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">How we manage</div>
+        <h2>Long-term value, added at every stage.</h2>
+        <p>Fieldstone is a discretionary portfolio manager that delivers institutional-quality investment concepts and execution at a fair cost to the investor. Our guidance is shaped by fundamental investment concepts and macroeconomic market cycles — applied consistently across the entire investment lifecycle.</p>
       </div>
-      <div class="process-pillars">
-        <div class="pillar">
-          <span class="pillar-label">Pillar 01</span>
-          <h4>Repeatable client evaluation</h4>
-          <p>Before any engagement begins, we apply a consistent framework to assess whether Fieldstone is the right fit for a client's situation — complexity, goals, timeline, and disposition. This process is the same regardless of relationship size, and it protects both sides from a misaligned engagement.</p>
+
+      <div class="path-track" role="tablist" aria-label="Investment lifecycle stages">
+        <div class="path-line"><div class="path-line-fill"></div></div>
+        <button class="path-node" type="button" role="tab" aria-selected="false" aria-controls="path-panel-0">
+          <span class="path-node-dot">1</span>
+          <span class="path-node-label">Acquisition &amp; Accumulation</span>
+        </button>
+        <button class="path-node" type="button" role="tab" aria-selected="false" aria-controls="path-panel-1">
+          <span class="path-node-dot">2</span>
+          <span class="path-node-label">Structuring</span>
+        </button>
+        <button class="path-node" type="button" role="tab" aria-selected="false" aria-controls="path-panel-2">
+          <span class="path-node-dot">3</span>
+          <span class="path-node-label">Allocation</span>
+        </button>
+        <button class="path-node" type="button" role="tab" aria-selected="false" aria-controls="path-panel-3">
+          <span class="path-node-dot">4</span>
+          <span class="path-node-label">Stewardship &amp; Vigilance</span>
+        </button>
+        <button class="path-node" type="button" role="tab" aria-selected="false" aria-controls="path-panel-4">
+          <span class="path-node-dot">5</span>
+          <span class="path-node-label">Distribution &amp; Transfer</span>
+        </button>
+      </div>
+
+      <div class="path-panels">
+        <div class="path-panel" id="path-panel-0" role="tabpanel">
+          <span class="path-panel-num">Stage 01</span>
+          <h3>Acquisition &amp; Accumulation</h3>
+          <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Whenever new capital enters the picture — savings, a bonus, a liquidity event, an inheritance — we determine how and when it should be deployed, with intentional timing rather than a single lump-sum reflex.</p></div>
+          <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">Rushing new capital into the market — or leaving it sitting in cash out of hesitation — are both common, costly mistakes. The entry decision sets the tone for everything that follows.</p></div>
+          <button class="path-next" type="button" data-goto="1">Next: Structuring &rarr;</button>
         </div>
-        <div class="pillar">
-          <span class="pillar-label">Pillar 02</span>
-          <h4>Industry-leading onboarding technology</h4>
-          <p>We use institutional-grade platforms to gather, process, and organize client financial information — account data, documents, tax returns, estate plans, and insurance policies — into a complete picture before any recommendation is made. Technology handles the data. We handle the judgment.</p>
+        <div class="path-panel" id="path-panel-1" role="tabpanel">
+          <span class="path-panel-num">Stage 02</span>
+          <h3>Structuring</h3>
+          <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Selecting and organizing the accounts that will hold your assets — taxable, tax-deferred, and tax-exempt — with titling and beneficiary designations that match your broader plan.</p></div>
+          <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">The wrong account for the wrong purpose is one of the most common — and most preventable — costs we see. Structure decided early avoids years of unwinding it later.</p></div>
+          <button class="path-next" type="button" data-goto="2">Next: Allocation &rarr;</button>
         </div>
-        <div class="pillar">
-          <span class="pillar-label">Pillar 03</span>
-          <h4>Long-term relationship and community value</h4>
-          <p>Fieldstone is built to be a lasting practice — not a transactional one. Our model is designed around long-term client relationships, ongoing accountability, and giving back to the communities we serve. We measure success by whether clients are better off five years in, not just five months.</p>
+        <div class="path-panel" id="path-panel-2" role="tabpanel">
+          <span class="path-panel-num">Stage 03</span>
+          <h3>Allocation</h3>
+          <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Building your portfolio using Fieldstone's Total Portfolio Approach — informed by fundamental analysis and macroeconomic cycles, and matched to your goals, time horizon, and risk tolerance.</p></div>
+          <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">Chasing individual winners is a distraction from the decision that actually drives results: how your money is divided across asset classes in the first place.</p></div>
+          <button class="path-next" type="button" data-goto="3">Next: Stewardship &amp; Vigilance &rarr;</button>
+        </div>
+        <div class="path-panel" id="path-panel-3" role="tabpanel">
+          <span class="path-panel-num">Stage 04</span>
+          <h3>Stewardship &amp; Vigilance</h3>
+          <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Ongoing monitoring, disciplined rebalancing, and risk oversight — adjusting proactively as markets move through cycles and as your own life and goals change.</p></div>
+          <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">Markets shift, life changes, and a portfolio that isn't actively managed slowly drifts from the goals it was built for — often without anyone noticing until it matters.</p></div>
+          <button class="path-next" type="button" data-goto="4">Next: Distribution &amp; Transfer &rarr;</button>
+        </div>
+        <div class="path-panel" id="path-panel-4" role="tabpanel">
+          <span class="path-panel-num">Stage 05</span>
+          <h3>Distribution &amp; Transfer</h3>
+          <div class="deepdive-item"><span class="deepdive-label">What this means</span><p class="deepdive-text">Tax-aware withdrawal sequencing as you draw on your portfolio, and coordinated planning for the eventual transfer of wealth to the next generation or a cause you care about.</p></div>
+          <div class="deepdive-item"><span class="deepdive-label">Why it matters</span><p class="deepdive-text">Poor sequencing at withdrawal, or no plan for transfer at all, can undo decades of disciplined accumulation in a handful of avoidable decisions.</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TIMELINE -->
-  <section class="process-timeline-section">
+  <!-- FEE SCHEDULE -->
+  <section class="fee-schedule" id="fees">
     <div class="wrap">
-      <h2>Seven steps. Three phases. One consistent advisor throughout.</h2>
-      <div class="phase">
-        <div class="phase-label">Phase 1 — Engagement</div>
-        <div class="timeline-step">
-          <div class="step-num">01</div>
-          <div class="step-body">
-            <h3>Introductory Call</h3>
-            <p>A 20–30 minute, no-obligation conversation to understand your situation and goals — and to determine whether Fieldstone is the right fit. No pitch, no pressure. We apply the same evaluation criteria to every prospective client regardless of asset level.</p>
-          </div>
-        </div>
-        <div class="timeline-step">
-          <div class="step-num">02</div>
-          <div class="step-body">
-            <h3>Proposal &amp; Agreement</h3>
-            <p>You receive a written scope of work and fee proposal tailored to your situation. The fee for portfolio management or financial planning is confirmed in writing before any work begins. Nothing starts until you've reviewed and signed.</p>
-            <span class="step-tag">Clear fee confirmation before any work begins</span>
-          </div>
-        </div>
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">Investment management fees</div>
+        <h2>One transparent, tiered fee.</h2>
       </div>
-      <div class="phase">
-        <div class="phase-label">Phase 2 — Onboarding</div>
-        <div class="timeline-step">
-          <div class="step-num">03</div>
-          <div class="step-body">
-            <h3>Account Setup</h3>
-            <p>Your accounts are opened and assets held directly in your name at an independent, SEC-registered custodian. Fieldstone never takes custody of client assets. We use institutional-grade account infrastructure and digital onboarding to make this process efficient and accurate.</p>
-            <span class="step-tag">Secure digital onboarding · Assets in your name</span>
-          </div>
-        </div>
-        <div class="timeline-step">
-          <div class="step-num">04</div>
-          <div class="step-body">
-            <h3>Discovery &amp; Analysis</h3>
-            <p>A structured deep-dive into your full financial picture — cash flow, tax situation, equity compensation, insurance, and estate documents. We use integrated planning technology to aggregate and analyze this information systematically, so no piece of your financial life is left unexamined.</p>
-            <span class="step-tag">Systematic data gathering · Complete financial picture</span>
-          </div>
-        </div>
-        <div class="timeline-step">
-          <div class="step-num">05</div>
-          <div class="step-body">
-            <h3>Plan &amp; Portfolio Design</h3>
-            <p>For portfolio management clients: a portfolio built using Fieldstone's Total Portfolio Approach, matched to your goals, time horizon, and risk tolerance. For financial planning clients: a full written plan delivered as a clear, actionable document. Both are explained in full before implementation.</p>
-            <span class="step-tag">Written deliverable confirmed before implementation</span>
-          </div>
-        </div>
-      </div>
-      <div class="phase">
-        <div class="phase-label">Phase 3 — Ongoing Partnership</div>
-        <div class="timeline-step">
-          <div class="step-num">06</div>
-          <div class="step-body">
-            <h3>Implementation</h3>
-            <p>Portfolio accounts are funded and transitioned in a tax-aware manner, with trades executing directly through your independent custodian — never through Fieldstone. Financial plans are delivered with a clear implementation roadmap and coordination with any specialists required.</p>
-          </div>
-        </div>
-        <div class="timeline-step">
-          <div class="step-num">07</div>
-          <div class="step-body">
-            <h3>Ongoing Reviews &amp; Community</h3>
-            <p>Regular check-ins, proactive rebalancing, and annual plan refreshes keep your strategy current as your life, goals, and markets evolve. Portfolio management clients have direct access to their advisor throughout — not a call center, not a portal. We are also committed to ongoing financial education and community engagement for the families and communities we serve.</p>
-            <span class="step-tag">Direct advisor access · Long-term relationship</span>
-          </div>
-        </div>
-      </div>
+      <table class="fee-table">
+        <thead><tr><th scope="col">Assets under management</th><th scope="col">Annual fee</th><th scope="col">Monthly fee</th></tr></thead>
+        <tbody>
+          <tr><td>First $2,000,000</td><td class="fee-rate">1.00%</td><td class="fee-mo">0.0833%</td></tr>
+          <tr><td>Next $3,000,000</td><td class="fee-rate">0.75%</td><td class="fee-mo">0.0625%</td></tr>
+          <tr><td>Above $5,000,000</td><td class="fee-rate">0.50%</td><td class="fee-mo">0.0417%</td></tr>
+        </tbody>
+      </table>
+      <p class="fee-fine">Tiered (blended) schedule: each rate applies only to the portion of assets within that tier. Billed monthly in advance. No account minimum. Custodian fees and fund expenses are additional, and sub-advisor fees may apply. See <a href="assets/disclosures/fieldstone-form-adv-part-2a-2b.pdf" target="_blank" rel="noopener">Form ADV Part 2A, Item 5</a> for details.</p>
     </div>
   </section>
 
@@ -778,8 +998,141 @@ img,video{max-width:100%;height:auto;}
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-col"><span class="footer-word">Fieldstone Advisory</span><p>An independent, fee-only portfolio management firm based in Austin, Texas.</p><div class="footer-addr">5209 Burnet Rd, 2nd Floor<br>Austin, TX 78756</div></div>
-      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">About</a><a onclick="showPage('process')" style="cursor:pointer">Process</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Partners</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
-      <div class="footer-col"><h4>Disclosures</h4><a href="#">Form ADV Part 2A</a><a href="#">Form CRS</a><a href="#">Privacy Policy</a><a href="mailto:noah@fieldstone-advisory.com">noah@fieldstone-advisory.com</a></div>
+      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">Home</a><a onclick="showPage('about')" style="cursor:pointer">About</a><a onclick="showPage('portfolio')" style="cursor:pointer">Portfolio Management</a><a onclick="showPage('planning')" style="cursor:pointer">Planning</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Partners</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
+      <div class="footer-col"><h4>Disclosures</h4><a href="assets/disclosures/fieldstone-form-adv-part-2a-2b.pdf" target="_blank" rel="noopener">Form ADV Part 2A &amp; 2B</a><a href="assets/disclosures/fieldstone-privacy-policy.pdf" target="_blank" rel="noopener">Privacy Policy</a><a href="mailto:noah@fieldstone-advisory.com">noah@fieldstone-advisory.com</a></div>
+    </div>
+    <div class="footer-legal"><p>Fieldstone Advisory, LLC is a registered investment adviser in the State of Texas. Registration does not imply a certain level of skill or training. This website is for informational purposes only and does not constitute investment, legal, or tax advice. Actual timelines and steps may vary based on individual circumstances.</p><p>&copy; 2025 Fieldstone Advisory, LLC. All rights reserved.</p></div>
+  </div>
+</footer>
+</div>
+
+<!-- ===================== PLANNING ===================== -->
+<div class="page" id="page-planning">
+<main>
+  <div class="dark-hero">
+    <div class="wrap">
+      <div class="eyebrow light">Financial planning</div>
+      <h1>A written financial plan, minus the paperwork.</h1>
+      <button class="btn-on-forest" style="margin-top:28px" onclick="showPage('contact')">Book a 30-minute call</button>
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <section class="process-timeline-section">
+    <div class="wrap">
+      <h2>How it works</h2>
+      <div class="phase">
+        <div class="timeline-step">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <h3>Introductory call</h3>
+            <p>20&ndash;30 minutes to understand your situation and see whether we&rsquo;re a fit. No pitch, no pressure.</p>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <h3>Onboarding &amp; agreement</h3>
+            <p>Review your scope of work and fee quote, sign, and share your information, all online. Nothing starts until you&rsquo;ve signed.</p>
+            <span class="step-tag">Digital onboarding</span>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <h3>Discovery &amp; plan design</h3>
+            <p>We pull your accounts and documents into one view, analyze the full picture, and build a written plan covering cash flow, taxes, goals, risk, estate, and insurance. We walk you through it before anything is implemented.</p>
+            <span class="step-tag">eMoney &middot; Vanilla</span>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <h3>Implementation &amp; annual review</h3>
+            <p>A clear roadmap, coordination with the attorneys, CPAs, and insurance professionals you need, and a yearly refresh. If you invest with us, your accounts run on Altruist.</p>
+            <span class="step-tag">Altruist</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNOLOGY -->
+  <section class="tech-section">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">The technology</div>
+        <h2>Less paperwork. More planning.</h2>
+        <p>Gathering information is the slow part of a financial plan. We use purpose-built platforms to bring it together, so your time goes to decisions.</p>
+      </div>
+      <div class="tech-grid" data-reveal>
+        <div class="tech-card">
+          <div class="tech-mark"><span>Online onboarding</span></div>
+          <div class="tech-role">Getting started</div>
+          <p>Review and sign your agreement and share your information through secure online tools, not paper forms.</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-mark"><img src="assets/logos/emoney.svg" alt="eMoney"></div>
+          <div class="tech-role">Planning</div>
+          <p>Your goals, cash flow, net worth, and projections in one live dashboard. Your plan is built and kept current here.</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-mark vanilla"><img src="assets/logos/vanilla.svg" alt="Vanilla"></div>
+          <div class="tech-role">Estate</div>
+          <p>Your estate plan, documents, and beneficiaries in one place, so gaps are easy to spot.</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-mark"><img src="assets/logos/altruist.svg" alt="Altruist"></div>
+          <div class="tech-role">Investments</div>
+          <p>Investment accounts, performance, statements, and documents behind a single login.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="planning-scope">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="eyebrow">Pricing</div>
+        <h2>One flat fee, quoted before we start.</h2>
+      </div>
+      <div class="scope-facts">
+        <div class="scope-fact">
+          <span class="scope-fact-label">Fee</span>
+          <p>Plans start at $500 and scale with complexity. Your quote is in writing before any work begins.</p>
+        </div>
+        <div class="scope-fact">
+          <span class="scope-fact-label">Timeline</span>
+          <p>Delivered within 60 days of engagement, allowing time for you to provide the information we request.</p>
+        </div>
+        <div class="scope-fact">
+          <span class="scope-fact-label">Billing</span>
+          <p>Billed in advance, as set out in your planning agreement. Includes help putting the plan into action.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="process-download">
+    <div class="wrap">
+      <div>
+        <h2>See what a plan would change for you.</h2>
+        <p>Start with a 20&ndash;30 minute call. No pitch, no pressure.</p>
+      </div>
+      <div>
+        <button class="btn-on-forest" onclick="showPage('contact')">Start a Conversation</button>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col"><span class="footer-word">Fieldstone Advisory</span><p>An independent, fee-only portfolio management firm based in Austin, Texas.</p><div class="footer-addr">5209 Burnet Rd, 2nd Floor<br>Austin, TX 78756</div></div>
+      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">Home</a><a onclick="showPage('about')" style="cursor:pointer">About</a><a onclick="showPage('portfolio')" style="cursor:pointer">Portfolio Management</a><a onclick="showPage('planning')" style="cursor:pointer">Planning</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Partners</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
+      <div class="footer-col"><h4>Disclosures</h4><a href="assets/disclosures/fieldstone-form-adv-part-2a-2b.pdf" target="_blank" rel="noopener">Form ADV Part 2A &amp; 2B</a><a href="assets/disclosures/fieldstone-privacy-policy.pdf" target="_blank" rel="noopener">Privacy Policy</a><a href="mailto:noah@fieldstone-advisory.com">noah@fieldstone-advisory.com</a></div>
     </div>
     <div class="footer-legal"><p>Fieldstone Advisory, LLC is a registered investment adviser in the State of Texas. Registration does not imply a certain level of skill or training. This website is for informational purposes only and does not constitute investment, legal, or tax advice. Actual timelines and steps may vary based on individual circumstances.</p><p>&copy; 2025 Fieldstone Advisory, LLC. All rights reserved.</p></div>
   </div>
@@ -791,40 +1144,36 @@ img,video{max-width:100%;height:auto;}
 <main>
   <div class="dark-hero">
     <div class="wrap">
-      <div class="eyebrow light">Insights</div>
-      <h1>Thinking on markets, planning, and the decisions that shape financial outcomes.</h1>
-      <p>Published pieces from Fieldstone, curated external resources, and tools for informed decision-making.</p>
+      <div class="eyebrow light eyebrow-header">Insights</div>
     </div>
   </div>
-  <section class="insights-pieces">
+  <section class="signup-section">
     <div class="wrap">
-      <div class="eyebrow">From Fieldstone</div>
-      <h2>Research, letters, and market perspective.</h2>
-      <div class="pieces-grid">
-        <div class="piece-card">
-          <div class="piece-tag">Essay · Investment Philosophy</div>
-          <h3>The Discernment Premium: Human Judgment in an AI World</h3>
-          <p>As artificial intelligence transforms financial services, the question is no longer whether AI can process information faster than humans — it's what human judgment still provides that AI cannot.</p>
-          <div class="piece-meta"><span class="piece-date">Forthcoming · 2025</span><span class="piece-link">Coming soon</span></div>
+      <div class="signup-grid">
+        <div class="signup-copy">
+          <div class="eyebrow">Fieldstone updates</div>
+          <h2>Stay connected to the practice.</h2>
+          <p>Our latest thinking on markets, planning, and relevant info for informed investors.</p>
+          <ul class="signup-list">
+            <li><strong>Market perspective</strong>Our read on market conditions and portfolio positioning, and what they mean for long-term investors.</li>
+            <li><strong>Planning ideas</strong>Practical thinking on the planning themes most relevant to our clients.</li>
+            <li><strong>Occasional essays</strong>Longer pieces on investment philosophy and how we think.</li>
+          </ul>
         </div>
-        <div class="piece-card piece-coming">
-          <div class="piece-tag">Semi-Annual Letter</div>
-          <h3>Investor Letter · H1 2025</h3>
-          <p>A semi-annual review of market conditions, portfolio positioning, and the planning themes most relevant to Fieldstone clients. Published twice yearly for clients and mailing list subscribers.</p>
-          <div class="piece-meta"><span class="piece-date">Available at launch</span><span class="piece-link">Join the list →</span></div>
-        </div>
-        <div class="piece-card piece-coming">
-          <div class="piece-tag">Monthly Update</div>
-          <h3>Market Pulse · Monthly</h3>
-          <p>Current market conditions, one topical theme, and what it means for long-term investors. Designed to be read in five minutes.</p>
-          <div class="piece-meta"><span class="piece-date">Available at launch</span><span class="piece-link">Join the list →</span></div>
-        </div>
-        <div class="subscribe-card">
-          <div class="eyebrow" style="justify-content:center;margin-bottom:12px">Get Fieldstone content delivered</div>
-          <p>Investor letters and monthly updates delivered to your inbox. No marketing — just the thinking.</p>
-          <div class="subscribe-row">
-            <input class="sub-input" type="email" placeholder="your@email.com" />
-            <button class="btn-primary" style="padding:10px 16px;font-size:13.5px">Subscribe</button>
+        <div class="signup-card" id="signup-card">
+          <h3>Get Fieldstone content delivered</h3>
+          <p class="signup-lede">Join the list for Fieldstone letters and updates as we publish them. No marketing &mdash; just the thinking.</p>
+          <form class="signup-form" id="signup-form" novalidate>
+            <label for="signup-email">Email address</label>
+            <input class="sub-input" id="signup-email" name="EMAIL" type="email" placeholder="you@example.com" autocomplete="email" required>
+            <div class="signup-hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
+            <button class="btn-primary" type="submit">Subscribe</button>
+            <div class="signup-status" id="signup-status" role="status" aria-live="polite"></div>
+            <p class="signup-fine">We&rsquo;ll only use your email to send Fieldstone content. Unsubscribe anytime. For general information only &mdash; not personalized investment advice.</p>
+          </form>
+          <div class="signup-done" role="status">
+            <h3>You&rsquo;re on the list.</h3>
+            <p>Thank you &mdash; watch your inbox for the next Fieldstone letter. If you don&rsquo;t see a confirmation email shortly, check your spam folder.</p>
           </div>
         </div>
       </div>
@@ -832,8 +1181,7 @@ img,video{max-width:100%;height:auto;}
   </section>
   <section class="resources-section">
     <div class="wrap">
-      <div class="eyebrow">External resources</div>
-      <h2>Curated tools, data, and research we find genuinely useful.</h2>
+      <div class="eyebrow eyebrow-header">External resources</div>
       <div class="resources-grid">
         <a class="resource-card" href="https://www.consumerfinance.gov/data-research/" target="_blank" rel="noopener"><div class="resource-cat">Consumer data</div><h4>CFPB Data &amp; Research</h4><p>Bureau data and research on household financial decisions, credit markets, and consumer behavior.</p><div class="resource-arrow">Visit →</div></a>
         <a class="resource-card" href="https://www.bankrate.com/news/" target="_blank" rel="noopener"><div class="resource-cat">Financial news</div><h4>Bankrate News</h4><p>Clear coverage of interest rates, savings, mortgages, and personal finance developments.</p><div class="resource-arrow">Visit →</div></a>
@@ -849,8 +1197,8 @@ img,video{max-width:100%;height:auto;}
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-col"><span class="footer-word">Fieldstone Advisory</span><p>An independent, fee-only portfolio management firm based in Austin, Texas.</p><div class="footer-addr">5209 Burnet Rd, 2nd Floor<br>Austin, TX 78756</div></div>
-      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">About</a><a onclick="showPage('process')" style="cursor:pointer">Process</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Partners</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
-      <div class="footer-col"><h4>Disclosures</h4><a href="#">Form ADV Part 2A</a><a href="#">Form CRS</a><a href="#">Privacy Policy</a><a href="mailto:noah@fieldstone-advisory.com">noah@fieldstone-advisory.com</a></div>
+      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">Home</a><a onclick="showPage('about')" style="cursor:pointer">About</a><a onclick="showPage('portfolio')" style="cursor:pointer">Portfolio Management</a><a onclick="showPage('planning')" style="cursor:pointer">Planning</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Partners</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
+      <div class="footer-col"><h4>Disclosures</h4><a href="assets/disclosures/fieldstone-form-adv-part-2a-2b.pdf" target="_blank" rel="noopener">Form ADV Part 2A &amp; 2B</a><a href="assets/disclosures/fieldstone-privacy-policy.pdf" target="_blank" rel="noopener">Privacy Policy</a><a href="mailto:noah@fieldstone-advisory.com">noah@fieldstone-advisory.com</a></div>
     </div>
     <div class="footer-legal"><p>Fieldstone Advisory, LLC is a registered investment adviser in the State of Texas. External links are provided for informational purposes only. Fieldstone does not endorse third-party content.</p><p>&copy; 2025 Fieldstone Advisory, LLC. All rights reserved.</p></div>
   </div>
@@ -862,27 +1210,16 @@ img,video{max-width:100%;height:auto;}
 <main>
   <div class="dark-hero">
     <div class="wrap">
-      <div class="eyebrow light">Partners &amp; network</div>
-      <h1>The platforms and people behind the practice.</h1>
-      <p>The technology we use on your behalf — and the professional relationships we draw on when your situation calls for a specialist.</p>
+      <div class="eyebrow light eyebrow-header">Partners &amp; network</div>
     </div>
   </div>
   <section class="ticker-section">
     <div class="wrap"><div class="ticker-label">Platforms &amp; technology</div></div>
     <div class="ticker-wrap">
       <div class="ticker-track">
-        <div class="logo-chip"><div class="logo-icon logo-altruist">ALT</div><div class="logo-name">Altruist</div></div>
-        <div class="logo-chip"><div class="logo-icon logo-schwab">SCHW</div><div class="logo-name">Schwab</div></div>
-        <div class="logo-chip"><div class="logo-icon logo-emoney">eMON</div><div class="logo-name">eMoney</div></div>
-        <div class="logo-chip"><div class="logo-icon logo-vanilla">VAN</div><div class="logo-name">Vanilla</div></div>
-        <div class="logo-chip"><div class="logo-icon logo-altruist">ALT</div><div class="logo-name">Altruist</div></div>
-        <div class="logo-chip"><div class="logo-icon logo-schwab">SCHW</div><div class="logo-name">Schwab</div></div>
-        <div class="logo-chip"><div class="logo-icon logo-emoney">eMON</div><div class="logo-name">eMoney</div></div>
-        <div class="logo-chip"><div class="logo-icon logo-vanilla">VAN</div><div class="logo-name">Vanilla</div></div>
-        <div class="logo-chip"><div class="logo-icon logo-altruist">ALT</div><div class="logo-name">Altruist</div></div>
-        <div class="logo-chip"><div class="logo-icon logo-schwab">SCHW</div><div class="logo-name">Schwab</div></div>
-        <div class="logo-chip"><div class="logo-icon logo-emoney">eMON</div><div class="logo-name">eMoney</div></div>
-        <div class="logo-chip"><div class="logo-icon logo-vanilla">VAN</div><div class="logo-name">Vanilla</div></div>
+        <div class="logo-chip"><div class="logo-icon"><img src="assets/logos/altruist.svg" alt="Altruist"></div><div class="logo-name">Altruist</div></div>
+        <div class="logo-chip"><div class="logo-icon"><img src="assets/logos/emoney.svg" alt="eMoney"></div><div class="logo-name">eMoney</div></div>
+        <div class="logo-chip"><div class="logo-icon logo-vanilla"><img src="assets/logos/vanilla.svg" alt="Vanilla"></div><div class="logo-name">Vanilla</div></div>
       </div>
     </div>
   </section>
@@ -906,8 +1243,8 @@ img,video{max-width:100%;height:auto;}
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-col"><span class="footer-word">Fieldstone Advisory</span><p>An independent, fee-only portfolio management firm based in Austin, Texas.</p><div class="footer-addr">5209 Burnet Rd, 2nd Floor<br>Austin, TX 78756</div></div>
-      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">About</a><a onclick="showPage('process')" style="cursor:pointer">Process</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Partners</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
-      <div class="footer-col"><h4>Disclosures</h4><a href="#">Form ADV Part 2A</a><a href="#">Form CRS</a><a href="#">Privacy Policy</a><a href="mailto:noah@fieldstone-advisory.com">noah@fieldstone-advisory.com</a></div>
+      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">Home</a><a onclick="showPage('about')" style="cursor:pointer">About</a><a onclick="showPage('portfolio')" style="cursor:pointer">Portfolio Management</a><a onclick="showPage('planning')" style="cursor:pointer">Planning</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Partners</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
+      <div class="footer-col"><h4>Disclosures</h4><a href="assets/disclosures/fieldstone-form-adv-part-2a-2b.pdf" target="_blank" rel="noopener">Form ADV Part 2A &amp; 2B</a><a href="assets/disclosures/fieldstone-privacy-policy.pdf" target="_blank" rel="noopener">Privacy Policy</a><a href="mailto:noah@fieldstone-advisory.com">noah@fieldstone-advisory.com</a></div>
     </div>
     <div class="footer-legal"><p>Fieldstone Advisory, LLC is a registered investment adviser in the State of Texas. Professional network relationships do not constitute a guarantee of services and Fieldstone does not receive compensation for referrals.</p><p>&copy; 2025 Fieldstone Advisory, LLC. All rights reserved.</p></div>
   </div>
@@ -919,26 +1256,17 @@ img,video{max-width:100%;height:auto;}
 <main>
   <div class="dark-hero">
     <div class="wrap">
-      <div class="eyebrow light">Client login</div>
-      <h1>Access your accounts and planning tools.</h1>
-      <p>Select your platform below. If you're unsure which to use, reach out and we'll point you in the right direction.</p>
+      <div class="eyebrow light eyebrow-header">Client login</div>
     </div>
   </div>
   <section class="login-section">
     <div class="wrap">
-      <div class="eyebrow">Portals</div>
-      <h2>Your platforms</h2>
-      <p class="login-intro">Each platform serves a specific purpose in your financial picture. Your advisor will confirm which you have access to during onboarding.</p>
+      <div class="eyebrow eyebrow-header">Portals</div>
       <div class="login-grid">
         <a class="login-card" href="https://altruist.com/login" target="_blank" rel="noopener">
           <div class="login-card-top"><div class="login-logo logo-altruist">ALT</div><h3>Altruist</h3></div>
           <p>Investment account access, portfolio performance, statements, and documents for accounts held at Altruist.</p>
           <span class="login-link">Log in to Altruist →</span>
-        </a>
-        <a class="login-card" href="https://www.schwab.com/client-login" target="_blank" rel="noopener">
-          <div class="login-card-top"><div class="login-logo logo-schwab">SCHW</div><h3>Charles Schwab</h3></div>
-          <p>Investment account access, portfolio performance, statements, and documents for accounts held at Schwab.</p>
-          <span class="login-link">Log in to Schwab →</span>
         </a>
         <a class="login-card" href="https://wealth.emaplan.com/ema/SignIn" target="_blank" rel="noopener">
           <div class="login-card-top"><div class="login-logo logo-emoney">eMON</div><h3>eMoney</h3></div>
@@ -959,8 +1287,8 @@ img,video{max-width:100%;height:auto;}
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-col"><span class="footer-word">Fieldstone Advisory</span><p>An independent, fee-only portfolio management firm based in Austin, Texas.</p><div class="footer-addr">5209 Burnet Rd, 2nd Floor<br>Austin, TX 78756</div></div>
-      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">About</a><a onclick="showPage('process')" style="cursor:pointer">Process</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Partners</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
-      <div class="footer-col"><h4>Disclosures</h4><a href="#">Form ADV Part 2A</a><a href="#">Form CRS</a><a href="#">Privacy Policy</a><a href="mailto:noah@fieldstone-advisory.com">noah@fieldstone-advisory.com</a></div>
+      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">Home</a><a onclick="showPage('about')" style="cursor:pointer">About</a><a onclick="showPage('portfolio')" style="cursor:pointer">Portfolio Management</a><a onclick="showPage('planning')" style="cursor:pointer">Planning</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Partners</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
+      <div class="footer-col"><h4>Disclosures</h4><a href="assets/disclosures/fieldstone-form-adv-part-2a-2b.pdf" target="_blank" rel="noopener">Form ADV Part 2A &amp; 2B</a><a href="assets/disclosures/fieldstone-privacy-policy.pdf" target="_blank" rel="noopener">Privacy Policy</a><a href="mailto:noah@fieldstone-advisory.com">noah@fieldstone-advisory.com</a></div>
     </div>
     <div class="footer-legal"><p>Fieldstone Advisory, LLC is a registered investment adviser in the State of Texas. Third-party platform links are provided for client convenience. Fieldstone is not responsible for the content or availability of external platforms.</p><p>&copy; 2025 Fieldstone Advisory, LLC. All rights reserved.</p></div>
   </div>
@@ -972,8 +1300,7 @@ img,video{max-width:100%;height:auto;}
 <main>
   <div class="dark-hero">
     <div class="wrap">
-      <div class="eyebrow light">Contact</div>
-      <h1>Please feel comfortable reaching out to us with questions about Fieldstone or your individual situation.</h1>
+      <div class="eyebrow light eyebrow-header">Contact</div>
     </div>
   </div>
   <section class="contact-section">
@@ -985,7 +1312,7 @@ img,video{max-width:100%;height:auto;}
         <div class="contact-item"><div class="contact-label">Service area</div><div class="contact-value">Austin, Texas · Serving clients nationwide</div></div>
         <div class="contact-item"><div class="contact-label">Response time</div><div class="contact-value">Within one business day</div></div>
         <div style="margin-top:24px">
-          <a href="https://outlook.office.com/bookwithme/user/464d974b3e8b40e789c3dd73d44dc6b4@fieldstone-advisory.com?anonymous&ep=signature&ismsaljsauthenabled" target="_blank" rel="noopener" class="btn-primary" style="width:100%;text-align:center;display:block">Book a 30-minute call →</a>
+          <a href="https://calendly.com/noah-fieldstone-advisory" target="_blank" rel="noopener" class="btn-primary" style="width:100%;text-align:center;display:block">Book a 30-minute call →</a>
           <p style="font-size:12.5px;color:var(--ink-soft);margin-top:9px;text-align:center">Schedule directly on Noah's calendar.</p>
         </div>
       </div>
@@ -993,14 +1320,15 @@ img,video{max-width:100%;height:auto;}
         <h2>Or send a note.</h2>
         <form onsubmit="handleFormSubmit(event)">
           <div class="form-row">
-            <div class="form-group"><label class="form-label">First name</label><input class="form-input" type="text" placeholder="First" required /></div>
-            <div class="form-group"><label class="form-label">Last name</label><input class="form-input" type="text" placeholder="Last" required /></div>
+            <div class="form-group"><label class="form-label">First name</label><input class="form-input" type="text" name="first_name" placeholder="First" required /></div>
+            <div class="form-group"><label class="form-label">Last name</label><input class="form-input" type="text" name="last_name" placeholder="Last" required /></div>
           </div>
-          <div class="form-group"><label class="form-label">Email address</label><input class="form-input" type="email" placeholder="you@email.com" required /></div>
-          <div class="form-group"><label class="form-label">Mobile phone</label><input class="form-input" type="tel" placeholder="(512) 000-0000" /></div>
-          <div class="form-group"><label class="form-label">How can we help? <span style="text-transform:none;letter-spacing:0;font-weight:400;color:var(--ink-soft)">(optional)</span></label><textarea class="form-textarea" placeholder="Tell us a bit about your situation and what you're looking for…"></textarea></div>
+          <div class="form-group"><label class="form-label">Email address</label><input class="form-input" type="email" name="email" placeholder="you@email.com" required /></div>
+          <div class="form-group"><label class="form-label">Mobile phone</label><input class="form-input" type="tel" name="phone" placeholder="(512) 000-0000" /></div>
+          <div class="form-group"><label class="form-label">How can we help? <span style="text-transform:none;letter-spacing:0;font-weight:400;color:var(--ink-soft)">(optional)</span></label><textarea class="form-textarea" name="message" placeholder="Tell us a bit about your situation and what you're looking for…"></textarea></div>
           <p class="form-note">Your information is used only to follow up on your inquiry. Fieldstone does not sell or share contact data. Submitting this form does not establish an advisory relationship.</p>
           <div style="margin-top:14px"><button type="submit" class="btn-primary" style="width:100%;text-align:center;padding:13px">Send message</button></div>
+          <div class="form-status" role="status" aria-live="polite" style="font-size:14px;line-height:1.6;margin-top:12px;color:var(--ink)"></div>
         </form>
       </div>
     </div>
@@ -1010,17 +1338,31 @@ img,video{max-width:100%;height:auto;}
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-col"><span class="footer-word">Fieldstone Advisory</span><p>An independent, fee-only portfolio management firm based in Austin, Texas.</p><div class="footer-addr">5209 Burnet Rd, 2nd Floor<br>Austin, TX 78756</div></div>
-      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">About</a><a onclick="showPage('process')" style="cursor:pointer">Process</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Partners</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
-      <div class="footer-col"><h4>Disclosures</h4><a href="#">Form ADV Part 2A</a><a href="#">Form CRS</a><a href="#">Privacy Policy</a><a href="mailto:noah@fieldstone-advisory.com">noah@fieldstone-advisory.com</a></div>
+      <div class="footer-col"><h4>Site</h4><a onclick="showPage('home')" style="cursor:pointer">Home</a><a onclick="showPage('about')" style="cursor:pointer">About</a><a onclick="showPage('portfolio')" style="cursor:pointer">Portfolio Management</a><a onclick="showPage('planning')" style="cursor:pointer">Planning</a><a onclick="showPage('insights')" style="cursor:pointer">Insights</a><a onclick="showPage('resources')" style="cursor:pointer">Partners</a><a onclick="showPage('contact')" style="cursor:pointer">Contact</a></div>
+      <div class="footer-col"><h4>Disclosures</h4><a href="assets/disclosures/fieldstone-form-adv-part-2a-2b.pdf" target="_blank" rel="noopener">Form ADV Part 2A &amp; 2B</a><a href="assets/disclosures/fieldstone-privacy-policy.pdf" target="_blank" rel="noopener">Privacy Policy</a><a href="mailto:noah@fieldstone-advisory.com">noah@fieldstone-advisory.com</a></div>
     </div>
     <div class="footer-legal"><p>Fieldstone Advisory, LLC is a registered investment adviser in the State of Texas. Registration does not imply a certain level of skill or training. This website is for informational purposes only and does not constitute an offer to sell, or a solicitation of an offer to buy, any security. Advisory services are offered only to clients pursuant to a written agreement.</p><p>&copy; 2025 Fieldstone Advisory, LLC. All rights reserved.</p></div>
   </div>
 </footer>
 </div>
 
+<!-- EXTERNAL LINK NOTICE -->
+<div class="extlink-overlay" id="extlink-overlay" role="dialog" aria-modal="true" aria-labelledby="extlink-title">
+  <div class="extlink-modal">
+    <div class="extlink-mark" aria-hidden="true"></div>
+    <h3 id="extlink-title">You're leaving fieldstone-advisory.com</h3>
+    <p>This link goes to a third-party site that Fieldstone doesn't control or endorse.</p>
+    <p class="extlink-url" id="extlink-url"></p>
+    <div class="extlink-actions">
+      <button type="button" class="btn-outline" id="extlink-cancel">Cancel</button>
+      <button type="button" class="btn-primary" id="extlink-continue">Continue</button>
+    </div>
+  </div>
+</div>
+
 <script>
-const pages=['home','process','insights','resources','login','contact'];
-const navMap={home:'nav-home',process:'nav-process',insights:'nav-insights',resources:'nav-resources',login:'nav-login',contact:'nav-contact'};
+const pages=['about','home','portfolio','planning','insights','resources','login','contact'];
+const navMap={about:'nav-about',home:'nav-home',portfolio:'nav-portfolio',planning:'nav-planning',insights:'nav-insights',resources:'nav-resources',login:'nav-login',contact:'nav-contact'};
 
 function showPage(name){
   pages.forEach(function(p){document.getElementById('page-'+p).classList.toggle('active',p===name);});
@@ -1028,9 +1370,135 @@ function showPage(name){
     var el=document.getElementById(navMap[k]);
     if(el) el.classList.toggle('active-link',k===name);
   });
+  var servicesTrigger=document.getElementById('nav-services');
+  if(servicesTrigger) servicesTrigger.classList.toggle('active-link',name==='portfolio'||name==='planning');
   window.scrollTo({top:0,behavior:'instant'});
   initStones();
   initReveal();
+  initLifecyclePath();
+  initHeroFacts();
+  initWheel();
+}
+
+function initWheel(){
+  var wheel=document.querySelector('.wheel');
+  if(!wheel||wheel._init) return;
+  wheel._init=true;
+  var spokes=wheel.querySelectorAll('.wheel-spoke');
+  var panelsWrap=document.querySelector('.wheel-panels');
+  var panels=panelsWrap.querySelectorAll('.wheel-panel');
+  function activate(idx){
+    spokes.forEach(function(s,i){s.classList.toggle('active',i===idx);});
+    panels.forEach(function(p,i){p.classList.toggle('active',i===idx);});
+  }
+  spokes.forEach(function(s,i){s.addEventListener('click',function(){activate(i);});});
+}
+
+function initHeroFacts(){
+  document.querySelectorAll('.hero-fact-wrap').forEach(function(wrap){
+    if(wrap._init) return;
+    wrap._init=true;
+    var btn=wrap.querySelector('.hero-fact');
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      var isOpen=wrap.classList.contains('open');
+      document.querySelectorAll('.hero-fact-wrap.open').forEach(function(w){
+        w.classList.remove('open');
+        w.querySelector('.hero-fact').setAttribute('aria-expanded','false');
+      });
+      if(!isOpen){wrap.classList.add('open');btn.setAttribute('aria-expanded','true');}
+    });
+  });
+  if(window._heroFactsGlobalInit) return;
+  window._heroFactsGlobalInit=true;
+  document.addEventListener('click',function(e){
+    document.querySelectorAll('.hero-fact-wrap.open').forEach(function(w){
+      if(!w.contains(e.target)){w.classList.remove('open');w.querySelector('.hero-fact').setAttribute('aria-expanded','false');}
+    });
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){
+      document.querySelectorAll('.hero-fact-wrap.open').forEach(function(w){w.classList.remove('open');w.querySelector('.hero-fact').setAttribute('aria-expanded','false');});
+    }
+  });
+}
+
+/* Email list sign-up. Set `action` to your provider's form-post URL (Mailchimp: Audience > Signup forms > Embedded forms > the form's action="..."). */
+var MAILING_LIST={action:'',emailField:'EMAIL'};
+function initSignup(){
+  var form=document.getElementById('signup-form');
+  if(!form) return;
+  var email=document.getElementById('signup-email');
+  var status=document.getElementById('signup-status');
+  var card=document.getElementById('signup-card');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    status.textContent='';
+    var value=email.value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)){
+      status.textContent='Please enter a valid email address.';
+      email.focus();
+      return;
+    }
+    if(form.elements['website'].value) return;
+    if(!MAILING_LIST.action){
+      status.textContent='Sign-ups open shortly. In the meantime, email noah@fieldstone-advisory.com and we\u2019ll add you to the list.';
+      return;
+    }
+    var btn=form.querySelector('button[type=submit]');
+    btn.disabled=true;
+    var body=new FormData();
+    body.append(MAILING_LIST.emailField,value);
+    fetch(MAILING_LIST.action,{method:'POST',mode:'no-cors',body:body}).then(function(){
+      card.classList.add('done');
+    }).catch(function(){
+      btn.disabled=false;
+      status.textContent='Something went wrong. Please try again, or email noah@fieldstone-advisory.com.';
+    });
+  });
+}
+
+function initGallery(){
+  var track=document.getElementById('gallery-track');
+  if(!track) return;
+  var prev=document.getElementById('gallery-prev'),next=document.getElementById('gallery-next');
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function update(){
+    prev.disabled=track.scrollLeft<=2;
+    next.disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-2;
+  }
+  function go(dir){track.scrollBy({left:dir*track.clientWidth*0.8,behavior:reduce?'auto':'smooth'});}
+  prev.addEventListener('click',function(){go(-1);});
+  next.addEventListener('click',function(){go(1);});
+  track.addEventListener('scroll',update,{passive:true});
+  track.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'){e.preventDefault();go(1);}
+    if(e.key==='ArrowLeft'){e.preventDefault();go(-1);}
+  });
+  window.addEventListener('resize',update);
+  track.querySelectorAll('img').forEach(function(img){img.addEventListener('load',update);});
+  update();
+}
+
+function initLifecyclePath(){
+  document.querySelectorAll('.path-track').forEach(function(track){
+    if(track._pathInit) return;
+    track._pathInit=true;
+    var section=track.closest('.lifecycle-path');
+    var nodes=track.querySelectorAll('.path-node');
+    var fill=track.querySelector('.path-line-fill');
+    var panels=section.querySelectorAll('.path-panel');
+    function activate(idx){
+      nodes.forEach(function(n,i){n.classList.toggle('active',i===idx);n.setAttribute('aria-selected',i===idx?'true':'false');});
+      panels.forEach(function(p,i){p.classList.toggle('active',i===idx);});
+      if(fill) fill.style.width=(nodes.length>1?(idx/(nodes.length-1)*100):0)+'%';
+    }
+    nodes.forEach(function(n,i){n.addEventListener('click',function(){activate(i);});});
+    section.querySelectorAll('[data-goto]').forEach(function(btn){
+      btn.addEventListener('click',function(){activate(parseInt(btn.getAttribute('data-goto'),10));});
+    });
+    activate(0);
+  });
 }
 
 function initStones(){
@@ -1058,15 +1526,95 @@ function initReveal(){
   }
 }
 
+/* Contact form. Set `action` to your form service endpoint (e.g. a Formspree or Web3Forms URL). */
+var CONTACT_FORM={action:''};
 function handleFormSubmit(e){
   e.preventDefault();
-  var btn=e.target.querySelector('button[type=submit]');
-  btn.textContent="Message sent — we'll be in touch.";
-  btn.disabled=true;btn.style.background='rgba(28,66,32,.7)';
+  var form=e.target;
+  var btn=form.querySelector('button[type=submit]');
+  var status=form.querySelector('.form-status');
+  status.textContent='';
+  if(!CONTACT_FORM.action){
+    status.textContent='Our online form is not active yet. Please email noah@fieldstone-advisory.com or book a call.';
+    return;
+  }
+  btn.disabled=true;
+  fetch(CONTACT_FORM.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}}).then(function(r){
+    if(!r.ok) throw new Error('bad status');
+    form.reset();
+    btn.textContent="Message sent. We'll be in touch.";
+  }).catch(function(){
+    btn.disabled=false;
+    status.textContent='Something went wrong. Please email noah@fieldstone-advisory.com or book a call.';
+  });
 }
 
 initStones();
 initReveal();
+initLifecyclePath();
+initHeroFacts();
+initWheel();
+initExternalLinkGuard();
+initSignup();
+initGallery();
+
+/* External link notice */
+function initExternalLinkGuard(){
+  var overlay=document.getElementById('extlink-overlay');
+  if(!overlay) return;
+  var urlEl=document.getElementById('extlink-url');
+  var continueBtn=document.getElementById('extlink-continue');
+  var cancelBtn=document.getElementById('extlink-cancel');
+  var pendingUrl=null;
+  function openModal(url){
+    pendingUrl=url;
+    urlEl.textContent=url;
+    overlay.classList.add('open');
+  }
+  function closeModal(){
+    overlay.classList.remove('open');
+    pendingUrl=null;
+  }
+  document.addEventListener('click',function(e){
+    var link=e.target.closest('a');
+    if(!link||!link.href) return;
+    if(link.target==='_blank' && /^https?:\/\//i.test(link.href) && link.host!==location.host){
+      e.preventDefault();
+      openModal(link.href);
+    }
+  });
+  continueBtn.addEventListener('click',function(){
+    if(pendingUrl) window.open(pendingUrl,'_blank','noopener');
+    closeModal();
+  });
+  cancelBtn.addEventListener('click',closeModal);
+  overlay.addEventListener('click',function(e){if(e.target===overlay) closeModal();});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape' && overlay.classList.contains('open')) closeModal();
+  });
+}
+
+/* Nav dropdown */
+var navDropdown=document.querySelector('.nav-dropdown');
+if(navDropdown){
+  var navDropdownTrigger=navDropdown.querySelector('.nav-dropdown-trigger');
+  function closeNavDropdown(){navDropdown.classList.remove('open');navDropdownTrigger.setAttribute('aria-expanded','false');}
+  navDropdownTrigger.addEventListener('click',function(e){
+    e.stopPropagation();
+    var isOpen=navDropdown.classList.contains('open');
+    closeNavDropdown();
+    if(!isOpen){navDropdown.classList.add('open');navDropdownTrigger.setAttribute('aria-expanded','true');}
+  });
+  navDropdown.querySelectorAll('.nav-dropdown-item').forEach(function(a){
+    a.addEventListener('click',closeNavDropdown);
+  });
+  document.addEventListener('click',function(e){
+    if(!navDropdown.contains(e.target)) closeNavDropdown();
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape') closeNavDropdown();
+  });
+}
 
 /* Hamburger */
 var hamburger=document.getElementById('hamburger');
